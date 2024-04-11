@@ -10,7 +10,9 @@
     <h1>Inicio de sesión</h1>
 
     <div>
-        <form action="{{route('usuario.Login')}}" method="GET">
+        <form action="{{route('usuario.Login')}}" method="POST">
+            {{-- //Usamos el metodo post para que no se vea la informacion en la url --}}
+            @csrf
             <div>
                 <label for="email">Email</label>
                 <input type="email" placeholder="Correo Electronico" name="email">

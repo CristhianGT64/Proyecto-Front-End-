@@ -16,6 +16,8 @@ class UsuarioController extends Controller
         //Pasar de json a arreglo
         $UsusarioActivo = $ususario->json();
 
+        // var_dump($UsusarioActivo);
+        // exit;
         //Validamos si existe el usuario y no sea null
         if($UsusarioActivo){
             //Si no es null comprobamos que tipo de usuario es
@@ -32,18 +34,18 @@ class UsuarioController extends Controller
         en ese var_dump demuestra como estan los datos en el arreglo y como
         los vamos a manipular, debido al json, los datos viajan con los mismos
         parametros que tenemos en la entidad en java */
-        // var_dump($UsusarioActivo['idusuario']);
+        // var_dump($UsusarioActivo);
         // exit;
 
         //Con este dependiedo de que tipo de usuario sea lo enviara a su vista
         if($UsusarioActivo['idusuario'] === 1){
-            return view('MenuAdministrador');
+            return view('MenuAdministrador', compact('UsusarioActivo'));
         }
         else if($UsusarioActivo['idusuario'] === 2){
-            return view('MenuUsuario');
+            return view('MenuUsuario', compact('UsusarioActivo'));
         }
         elseif($UsusarioActivo['idusuario'] === 3){
-            return view('MenuRepartidor');
+            return view('MenuRepartido', compact('UsusarioActivo'));
         }
 
         return redirect('/');
