@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <link rel="stylesheet" href="/css/Mapa.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script> {{-- Ncesario para el mapa --}}
+    <link rel="stylesheet" href="/css/Mapa.css"> {{-- Necesario para el mapa --}}
     <title>Repartidor</title>
 </head>
 <body>
 <h1>Repartidor</h1>
-<div id="map">
+<div id="">
 @php
     // $google_maps_url = 'https://maps.googleapis.com/maps/api/distancematrix/json?destinations=New%20York%20City%2C%20NY&origins=Washington%2C%20DC%7CBoston&units=imperial&key=AIzaSyAZ62cymsGJJcaJV7jZoQyacAuEmP60NE8';
     // $google_maps_json = file_get_contents($google_maps_url);

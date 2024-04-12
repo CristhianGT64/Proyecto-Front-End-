@@ -51,10 +51,33 @@ class UsuarioController extends Controller
         return redirect('/');
     }
 
-    public function MenuAdministrador($UsusarioActivo){
-        var_dump($UsusarioActivo);
-        exit;
-        return view('MenuAdministrador');
+    public function CrearUsusarioNuevo(){
+        return view('UsuarioNuevo');
     }
+
+    public function GuardarUsuario(Request $request){
+        $guardarUsuario =  Http::post('http://localhost:8081/api/Ususario/CrearUsuario', [
+            "personas"=>[
+                "primernombre"=>$request->primerNombre,
+                "segundonombre"=>$request->segundoNombre,
+                "primerapellido"=>$request->primerApellido,
+                "segundoapellido"=>$request->segundoApellido
+            ],
+            "email"=>$request->email,
+            "contrasena"=>$request->contrasena,
+            "telefono"=>$request->telefono,
+            "latitud"=>$request->latitud,
+            "longitud"=>$request->longitud
+        ]);
+
+        var_dump($guardarUsuario->json());
+        exit;
+
+        if (!$guardarUsuario){
+            return redirect('/');
+        }
+        return view('UsuarioNuevo');
+    }
+
     
 }

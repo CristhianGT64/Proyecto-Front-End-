@@ -17,11 +17,15 @@
                 <label for="email">Email</label>
                 <input type="email" placeholder="Correo Electronico" name="email">
             </div>
+            <br>
             <div>
                 <label for="contrasena">Contraseña</label>
                 <input type="password" placeholder="Contraseña" name="contrasena">
             </div>
-
+            <br>
+                <a href="{{route('usuario.CrearUsusario')}}">Crear un nuevo Usuario</a>
+            <br>
+            <br>    
             <div>
                 <input type="submit" value="Iniciar Sesión" >
             </div>
