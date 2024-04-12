@@ -15,6 +15,8 @@ class UsuarioController extends Controller
         ]);
         //Pasar de json a arreglo
         $UsusarioActivo = $ususario->json();
+        // var_dump($UsusarioActivo);
+        // exit;
 
         // var_dump($UsusarioActivo);
         // exit;
@@ -38,13 +40,13 @@ class UsuarioController extends Controller
         // exit;
 
         //Con este dependiedo de que tipo de usuario sea lo enviara a su vista
-        if($UsusarioActivo['idusuario'] === 1){
+        if($UsusarioActivo['roles']["idrol"] === 1){
             return view('MenuAdministrador', compact('UsusarioActivo'));
         }
-        else if($UsusarioActivo['idusuario'] === 2){
+        else if($UsusarioActivo['roles']["idrol"] === 2){
             return view('MenuUsuario', compact('UsusarioActivo'));
         }
-        elseif($UsusarioActivo['idusuario'] === 3){
+        elseif($UsusarioActivo['roles']["idrol"] === 3){
             return view('MenuRepartido', compact('UsusarioActivo'));
         }
 
@@ -70,10 +72,7 @@ class UsuarioController extends Controller
             "longitud"=>$request->longitud
         ]);
 
-        var_dump($guardarUsuario->json());
-        exit;
-
-        if (!$guardarUsuario){
+        if ($guardarUsuario){
             return redirect('/');
         }
         return view('UsuarioNuevo');
