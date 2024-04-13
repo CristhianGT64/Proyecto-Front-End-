@@ -4,10 +4,17 @@
 // locate you.
 let map, infoWindow;
 
-function initMap() {
+async function initMap() {
+  //Necesario para poner los marcadores
+  const { Map, InfoWindow } = await google.maps.importLibrary("maps");
+  const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary(
+    "marker",
+  );
+
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 14.089889, lng:-87.213806  },
-    zoom: 13
+    zoom: 13,
+    mapId: "DEMO_MAP_ID",
   });
   infoWindow = new google.maps.InfoWindow();
 
@@ -25,10 +32,16 @@ function initMap() {
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           };
-          infoWindow.setPosition(pos);
-          infoWindow.setContent("Posicion Encontrada");
-          infoWindow.open(map);
+          // infoWindow.setPosition(pos);
+          const marker = new google.maps.marker.AdvancedMarkerElement({
+            map,
+            position: pos, //Este es el encargado de poner los marcadores
+            title: 'Uluru',
+        });
+          // infoWindow.setContent("Posicion Encontrada");
+          // infoWindow.open(map);
           map.setCenter(pos);
+          map.setZoom(18);
         //Mandar latitiid y longiyud al html
         document.getElementById('latitud').value = pos.lat;
         document.getElementById('longitud').value = pos.lng;

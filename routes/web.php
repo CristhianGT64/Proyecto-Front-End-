@@ -14,6 +14,12 @@ Route::get('/Usuario/CrearUsuario', [UsuarioController::class,'CrearUsusarioNuev
 Route::post('/Usuario/GuardarUsuario', [UsuarioController::class,'GuardarUsuario'])->name('usuario.GuardarUsuario');
 
 
+//Pruebas de vistas
+Route::get('/prueba/MapaMarcadores', function () {
+    return view('PruebaMapaMarcadores');
+})->name("Login");
+
+
 //Negocios =====================================================================
 Route::get('/negocio/agregarNegocio',[NegocioConroller::class, 'agregarNegocio'])->name('negocio.agregarNegocio');
 Route::post('/negocio/guardarNegocio', [NegocioConroller::class, 'guardarNegocio'])->name('negocio.guardarNegocio');

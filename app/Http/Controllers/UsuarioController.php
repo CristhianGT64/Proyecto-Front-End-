@@ -15,6 +15,8 @@ class UsuarioController extends Controller
         ]);
         //Pasar de json a arreglo
         $UsusarioActivo = $ususario->json();
+        // var_dump($UsusarioActivo);
+        // exit;
 
         // var_dump($UsusarioActivo);
         // exit;
@@ -70,10 +72,7 @@ class UsuarioController extends Controller
             "longitud"=>$request->longitud
         ]);
 
-        var_dump($guardarUsuario->json());
-        exit;
-
-        if (!$guardarUsuario){
+        if ($guardarUsuario){
             return redirect('/');
         }
         return view('UsuarioNuevo');
