@@ -6,7 +6,7 @@ async function initMap() {
   const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary(
     "marker",
   );
-  const position = { lat: -25.344, lng: 131.031 };//Variable con posicion que usaremos
+  const position = { lat: 14.0857108 , lng: -87.1994419 };//Variable con posicion que usaremos
 
   //Nueva instancia de un mapa de google
   const map = new google.maps.Map(document.getElementById("map"), {
@@ -24,6 +24,17 @@ async function initMap() {
 //   const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   // Añade algunos marcadores al mapa No se usan
     const markers = locations.map((posiciones) => {
+
+        //Imagen para indicadores de conductores -----
+
+        const beachFlagImg = document.createElement("img"); //creamos una imagen en el html
+        // const beachFlagImg.src = "/imagenes/logoRepartidor.jpg";
+        beachFlagImg.src = "/imagenes/cascoLogo.png"; //decimos a que es igual esa imagen
+        beachFlagImg.width = 18; // Ancho de la imagen en píxeles
+        beachFlagImg.height = 18; // Alto de la imagen en píxeles
+
+        ///Termina imagenes para conductor
+
     // const label = labels[i % labels.length]; No se usan
     /* Este de aqui es clave para poner varios marcadores */
     //Cuando se instancia cada funcion del mapa se debe de poner
@@ -33,12 +44,15 @@ async function initMap() {
         map,
         position: posiciones, //Este es el encargado de poner los marcadores
         title: 'Uluru',
+        content: beachFlagImg, // le decimos que los nuevos inconos seran la imagen que importamos
     });
   
     // abre la ventana de información cuando se hace clic en el marcador
     marker.addListener("click", () => {
-      infoWindow.setContent(position.lat + ", " + position.lng); //Este sera modificado para despues poner los nombres de los negocios
+      infoWindow.setContent(posiciones.lat + ", " + posiciones.lng); //Este sera modificado para despues poner los nombres de los negocios
       infoWindow.open(map, marker); //Abre el globo de texto
+      map.setCenter(posiciones);
+      map.setZoom(18);
     });
     return marker;
   });
@@ -49,7 +63,7 @@ async function initMap() {
 }
 
 const locations = [
-  { lat: -31.56391, lng: 147.154312 },
+  { lat: 14.0857108 , lng: -87.1994419 },
   { lat: -33.718234, lng: 150.363181 },
   { lat: -33.727111, lng: 150.371124 },
   { lat: -33.848588, lng: 151.209834 },
