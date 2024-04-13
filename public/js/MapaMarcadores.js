@@ -2,46 +2,50 @@
 
 async function initMap() {
   // Request needed libraries.
-//   const { Map, InfoWindow } = await google.maps.importLibrary("maps");
+  const { Map, InfoWindow } = await google.maps.importLibrary("maps");
   const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary(
     "marker",
   );
-  const position = { lat: -25.344, lng: 131.031 };
+  const position = { lat: -25.344, lng: 131.031 };//Variable con posicion que usaremos
 
+  //Nueva instancia de un mapa de google
   const map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 3,
-    center: position,
-    mapId: "DEMO_MAP_ID",
+    zoom: 3, //zoom incial de nuestra app
+    center: position, //Posicion de nuestro mapa cuando inicie
+    mapId: "DEMO_MAP_ID", // Lo podemos usar para modificar el disenio de nuestro maapa
   });
+
+    //Es el que nos traera globos de texto para nuestro codigo
   const infoWindow = new google.maps.InfoWindow({
     content: "",
     disableAutoPan: true,
   });
-  // Create an array of alphabetical characters used to label the markers.
-  const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  // Add some markers to the map.
-  const markers = locations.map((position, i) => {
-    const label = labels[i % labels.length];
+  // Crea un arreglo de caracteres alfabéticos utilizados para etiquetar los marcadores
+//   const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  // Añade algunos marcadores al mapa No se usan
+    const markers = locations.map((posiciones) => {
+    // const label = labels[i % labels.length]; No se usan
+    /* Este de aqui es clave para poner varios marcadores */
+    //Cuando se instancia cada funcion del mapa se debe de poner
+    // su paramentro, funcionan tipo clave valor
+    //Este es para mapear los marcadores, es decir, hacer los dibujos de los marcadores
     const marker = new google.maps.marker.AdvancedMarkerElement({
         map,
-        position: position,
+        position: posiciones, //Este es el encargado de poner los marcadores
         title: 'Uluru',
-
     });
   
-    // open info window when marker is clicked
+    // abre la ventana de información cuando se hace clic en el marcador
     marker.addListener("click", () => {
-      infoWindow.setContent(position.lat + ", " + position.lng);
-      infoWindow.open(map, marker);
+      infoWindow.setContent(position.lat + ", " + position.lng); //Este sera modificado para despues poner los nombres de los negocios
+      infoWindow.open(map, marker); //Abre el globo de texto
     });
     return marker;
   });
   
-  // Add a marker clusterer to manage the markers.
+  // “Añade un agrupador de marcadores para administrar los marcadores
   new MarkerClusterer({ markers, map });
 
-  // Add a marker clusterer to manage the markers.
-//   new MarkerClusterer({ markers, map });
 }
 
 const locations = [
@@ -70,4 +74,4 @@ const locations = [
   { lat: -43.999792, lng: 170.463352 },
 ];
 
-initMap();
+initMap(); //Llamado a la funcion
