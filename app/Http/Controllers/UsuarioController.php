@@ -38,13 +38,13 @@ class UsuarioController extends Controller
         // exit;
 
         //Con este dependiedo de que tipo de usuario sea lo enviara a su vista
-        if($UsusarioActivo['idusuario'] === 1){
+        if($UsusarioActivo['roles']["idrol"] === 1){
             return view('MenuAdministrador', compact('UsusarioActivo'));
         }
-        else if($UsusarioActivo['idusuario'] === 2){
+        else if($UsusarioActivo['roles']["idrol"] === 2){
             return view('MenuUsuario', compact('UsusarioActivo'));
         }
-        elseif($UsusarioActivo['idusuario'] === 3){
+        elseif($UsusarioActivo['roles']["idrol"] === 3){
             return view('MenuRepartido', compact('UsusarioActivo'));
         }
 
