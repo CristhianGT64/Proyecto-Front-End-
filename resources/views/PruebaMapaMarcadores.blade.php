@@ -26,6 +26,9 @@
           // Use the 'v' parameter to indicate the version to load (alpha, beta, weekly, etc.)
         });
       </script>
-    <script type="module" src="/js/MapaMarcadores.js"></script>
+<script type="text/javascript">
+    var repartidoreBD = {!! json_encode($repartidores) !!};
+</script>
+<script type="module" src="/js/MapaMarcadores.js"></script>
 </body>
 </html>

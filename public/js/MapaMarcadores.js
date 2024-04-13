@@ -1,5 +1,7 @@
 import {ubicacionRepartidor} from '../js/ubicacionRepartidor.js';
 
+// console.log(repartidoreBD);//
+
 // Función para calcular una nueva posición
 //La distancia debe de recibirse como km, es decir 4,3,2,1
 function CalcularPosicion(lat, lng, distancia, rumbo) {
@@ -48,14 +50,29 @@ function CalcularPosicion(lat, lng, distancia, rumbo) {
 
         // Calcula una nueva posición a 50 km al este (90 grados) del centro del 
         //La distancia lo maximo que podra ser es de 3.9 km
-    const nvoPosicionRepartidor = new ubicacionRepartidor(1,180,3.9) //Prueba de creacion de nuevo objeto para meter info
-    const nuevaPosicion = CalcularPosicion(position.lat, position.lng, nvoPosicionRepartidor._distanciaActualDelCentro, nvoPosicionRepartidor.rumbo);
-    nvoPosicionRepartidor.latRepartidor = nuevaPosicion.lat;
-    nvoPosicionRepartidor.lngRepartidor = nuevaPosicion.lng;
-    Repartidores.push(nvoPosicionRepartidor);
+
+    repartidoreBD.forEach(element => {
+        // console.log(element.idusuario);
+        // console.log(element.personas.primernombre);
+        const id = element.idusuario;
+        const rumbo = Math.random()*360;
+        const distancia = Math.random()*3.
+        const latRepartidor = element.latitud;
+        const lngRepartidor = element.longitud;
+        const nvoPosicionRepartidor = new ubicacionRepartidor(id, rumbo, distancia, latRepartidor, lngRepartidor);
+        Repartidores.push(nvoPosicionRepartidor);
+    });
+
+    // console.log(Repartidores);
+
+    // const nvoPosicionRepartidor = new ubicacionRepartidor(1,180,3.9) //Prueba de creacion de nuevo objeto para meter info
+    // const nuevaPosicion = CalcularPosicion(position.lat, position.lng, nvoPosicionRepartidor._distanciaActualDelCentro, nvoPosicionRepartidor.rumbo);
+    // nvoPosicionRepartidor.latRepartidor = nuevaPosicion.lat;
+    // nvoPosicionRepartidor.lngRepartidor = nuevaPosicion.lng;
+    // Repartidores.push(nvoPosicionRepartidor);
 
     //Agregamos un nuevo elemento a nuestra lista, este nos servira para mucho
-    locations.push({lat:nvoPosicionRepartidor.latRepartidor, lng:nvoPosicionRepartidor.lngRepartidor});
+    // locations.push({lat:nvoPosicionRepartidor.latRepartidor, lng:nvoPosicionRepartidor.lngRepartidor});
 
         //Es el que nos traera globos de texto para nuestro mapa cuando toquemos los iconos
         //Por los son vacios
@@ -63,6 +80,7 @@ function CalcularPosicion(lat, lng, distancia, rumbo) {
         content: "",
         disableAutoPan: true,
     });
+
     // Crea un arreglo de caracteres alfabéticos utilizados para etiquetar los marcadores
     //   const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     // Añade algunos marcadores al mapa No se usan

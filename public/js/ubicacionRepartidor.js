@@ -13,12 +13,12 @@
     // }
 
     //Constructor con valores
-    constructor(idRepartidor, rumbo, distanciaActualDelCentro) {    
+    constructor(idRepartidor, rumbo, distanciaActualDelCentro,latRepartidor, lngRepartidor) {    
         this.idRepartidor = idRepartidor;
         this.rumbo = rumbo;
         this.distanciaActualDelCentro = distanciaActualDelCentro;
-        // this.latRepartidor = latRepartidor;
-        // this.lngRepartidor = lngRepartidor
+        this.latRepartidor = latRepartidor;
+        this.lngRepartidor = lngRepartidor
     }
 
     get idRepartidor() {

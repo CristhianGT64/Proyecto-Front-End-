@@ -3,6 +3,7 @@
 use App\Http\Controllers\NegocioConroller;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Http;
 
 Route::get('/', function () {
     return view('Login');
@@ -16,7 +17,9 @@ Route::post('/Usuario/GuardarUsuario', [UsuarioController::class,'GuardarUsuario
 
 //Pruebas de vistas
 Route::get('/prueba/MapaMarcadores', function () {
-    return view('PruebaMapaMarcadores');
+    $obtenerRepartidores = Http::get('http://localhost:8081/api/Usuario/TraerRepartidores');
+    $repartidores = $obtenerRepartidores->json();
+    return view('PruebaMapaMarcadores', compact('repartidores'));
 })->name("Login");
 
 
