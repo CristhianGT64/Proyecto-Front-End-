@@ -1,9 +1,9 @@
-// import { MarkerClusterer } from "https://cdn.skypack.dev/@googlemaps/markerclusterer@2.3.1";
+import {ubicacionRepartidor} from '../js/ubicacionRepartidor.js';
 
 // Función para calcular una nueva posición
 //La distancia debe de recibirse como km, es decir 4,3,2,1
 function CalcularPosicion(lat, lng, distancia, rumbo) {
-    const R = 5000; // Radio de Teguscigalpa y comayaguela aprox en metros
+    const R = 5000; // Radio de Teguscigalpa y comayaguela aprox en km
     const ad = distancia / R; // Convierte la distancia a un ángulo en radianes
     const lat1 = (Math.PI / 180) * lat; // Convierte la latitud a radianes
     const lng1 = (Math.PI / 180) * lng; // Convierte la longitud a radianes
@@ -48,10 +48,14 @@ function CalcularPosicion(lat, lng, distancia, rumbo) {
 
         // Calcula una nueva posición a 50 km al este (90 grados) del centro del 
         //La distancia lo maximo que podra ser es de 3.9 km
-    const nuevaPosicion = CalcularPosicion(position.lat, position.lng, 3.9, -120);
+    const nvoPosicionRepartidor = new ubicacionRepartidor(1,180,3.9) //Prueba de creacion de nuevo objeto para meter info
+    const nuevaPosicion = CalcularPosicion(position.lat, position.lng, nvoPosicionRepartidor._distanciaActualDelCentro, nvoPosicionRepartidor.rumbo);
+    nvoPosicionRepartidor.latRepartidor = nuevaPosicion.lat;
+    nvoPosicionRepartidor.lngRepartidor = nuevaPosicion.lng;
+    Repartidores.push(nvoPosicionRepartidor);
 
     //Agregamos un nuevo elemento a nuestra lista, este nos servira para mucho
-    locations.push(nuevaPosicion);
+    locations.push({lat:nvoPosicionRepartidor.latRepartidor, lng:nvoPosicionRepartidor.lngRepartidor});
 
         //Es el que nos traera globos de texto para nuestro mapa cuando toquemos los iconos
         //Por los son vacios
@@ -109,5 +113,7 @@ function CalcularPosicion(lat, lng, distancia, rumbo) {
     { lat: 14.086917, lng: -87.193028 },
     { lat: 14.086778, lng: -87.204306 },
     ];
+
+    const Repartidores = [];
 
 initMap(); //Llamado a la funcion

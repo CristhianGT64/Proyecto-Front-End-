@@ -26,6 +26,6 @@
           // Use the 'v' parameter to indicate the version to load (alpha, beta, weekly, etc.)
         });
       </script>
-    <script src="/js/MapaMarcadores.js"></script>
+    <script type="module" src="/js/MapaMarcadores.js"></script>
 </body>
 </html>
