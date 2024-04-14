@@ -51,16 +51,43 @@ function CalcularPosicion(lat, lng, distancia, rumbo) {
         // Calcula una nueva posición a 50 km al este (90 grados) del centro del 
         //La distancia lo maximo que podra ser es de 3.9 km
 
-    repartidoreBD.forEach(element => {
-        // console.log(element.idusuario);
-        // console.log(element.personas.primernombre);
-        const id = element.idusuario;
+        function gradosRadianes(grados){
+            return (Math.PI / 180) * grados;
+        }
+
+        function RadianesGrados(radianes){
+            return ((180 / Math.PI) * radianes);
+        }
+
+        function calcularRumbo(repartidor){ //Con este nos ayudara a obtener el rumbo y en base a el generar numeros aleatorios de rumbo
+            const latRepartidor = gradosRadianes(repartidor.latitud);
+            const lngRepartidor = gradosRadianes(repartidor.longitud);
+            const lngBase = gradosRadianes(position.lng);
+            const latBase = gradosRadianes(position.lat) 
+            const deltaY = lngRepartidor - lngBase;
+            const x = Math.cos(latRepartidor)*Math.sin(deltaY);
+            const y = Math.cos(latBase)*Math.sin(latRepartidor) - Math.sin(latBase)*Math.cos(latRepartidor)*Math.cos(deltaY);
+            const rumbo = Math.atan2(x,y);
+
+            console.log(RadianesGrados(rumbo));
+            
+        }
+
+        repartidoreBD.forEach(repartidor => {
+        // console.log(repartidor.idusuario);
+        // console.log(repartidor.personas.primernombre);
+        //Crear nuevo objeto en base a infomracion de base de datos y guardarlo en un arreglo
+        const id = repartidor.idusuario;
         const rumbo = Math.random()*360;
         const distancia = Math.random()*3.
-        const latRepartidor = element.latitud;
-        const lngRepartidor = element.longitud;
-        const nvoPosicionRepartidor = new ubicacionRepartidor(id, rumbo, distancia, latRepartidor, lngRepartidor);
+        const latRepartidor = repartidor.latitud;
+        const lngRepartidor = repartidor.longitud;
+        const nvoPosicionRepartidor = new ubicacionRepartidor(id, calcularRumbo(repartidor), 0, latRepartidor, lngRepartidor);
         Repartidores.push(nvoPosicionRepartidor);
+
+        const posicion = { lat: latRepartidor, lng:lngRepartidor };
+        locations.push(posicion);
+
     });
 
     // console.log(Repartidores);
@@ -125,11 +152,11 @@ function CalcularPosicion(lat, lng, distancia, rumbo) {
 
     const locations = [
     { lat: 14.0857108 , lng: -87.1994419 },
-    { lat: 14.099139, lng: -87.192222 },
-    { lat: 14.099750, lng: -87.195111 },
-    { lat: 14.100583, lng: -87.197639 },
-    { lat: 14.086917, lng: -87.193028 },
-    { lat: 14.086778, lng: -87.204306 },
+    // { lat: 14.099139, lng: -87.192222 },
+    // { lat: 14.099750, lng: -87.195111 },
+    // { lat: 14.100583, lng: -87.197639 },
+    // { lat: 14.086917, lng: -87.193028 },
+    // { lat: 14.086778, lng: -87.204306 },
     ];
 
     const Repartidores = [];
