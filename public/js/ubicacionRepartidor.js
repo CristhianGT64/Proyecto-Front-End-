@@ -21,6 +21,23 @@
         this.lngRepartidor = lngRepartidor
     }
 
+    ModificarDireccion(){
+        // console.log(Math.floor(Math.random() * (max - min)) + min);
+        if(this._distanciaActualDelCentro >= 5){
+            return this._distanciaActualDelCentro -= .8;
+        }
+        return this._distanciaActualDelCentro += (Math.random() * 2 - 1); //Hace una distancia aleatoria que sumara o restara
+    }
+
+    ModificarAngulo(){
+        if(this._rumbo >= 380){
+           return this.rumbo -= 2;
+       }
+       return this._rumbo +=  (Math.random() * 5 - 5);
+
+        // return this._rumbo;
+    }
+
     get idRepartidor() {
         return this._idRepartidor;
     }

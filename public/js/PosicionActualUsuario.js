@@ -15,6 +15,7 @@ async function initMap() {
     center: { lat: 14.089889, lng:-87.213806  },
     zoom: 13,
     mapId: "DEMO_MAP_ID",
+    draggable:true,
   });
   infoWindow = new google.maps.InfoWindow();
 
@@ -37,6 +38,7 @@ async function initMap() {
             map,
             position: pos, //Este es el encargado de poner los marcadores
             title: 'Uluru',
+            draggable:true,
         });
           // infoWindow.setContent("Posicion Encontrada");
           // infoWindow.open(map);
