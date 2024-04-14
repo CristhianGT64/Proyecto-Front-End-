@@ -5,7 +5,7 @@ import {ubicacionRepartidor} from '../js/ubicacionRepartidor.js';
 // Función para calcular una nueva posición
 //La distancia debe de recibirse como km, es decir 4,3,2,1
 function CalcularPosicion(lat, lng, distancia, rumbo) {
-    const R = 5000; // Radio de Teguscigalpa y comayaguela aprox en km
+    const R = 5000; // Radio de Teguscigalpa y comayaguela aprox en metros
     const ad = distancia / R; // Convierte la distancia a un ángulo en radianes
     const lat1 = (Math.PI / 180) * lat; // Convierte la latitud a radianes
     const lng1 = (Math.PI / 180) * lng; // Convierte la longitud a radianes
@@ -68,9 +68,28 @@ function CalcularPosicion(lat, lng, distancia, rumbo) {
             const x = Math.cos(latRepartidor)*Math.sin(deltaY);
             const y = Math.cos(latBase)*Math.sin(latRepartidor) - Math.sin(latBase)*Math.cos(latRepartidor)*Math.cos(deltaY);
             const rumbo = Math.atan2(x,y);
+            var rumboGrados = RadianesGrados(rumbo);
+            if(rumboGrados < 0){
+                rumboGrados += 360;
+            }
+            // console.log(rumboGrados);
+            return rumboGrados;
+        }
 
-            console.log(RadianesGrados(rumbo));
-            
+        //Ahora calcularemos la distancia entre dos ubicaciones, la base y la del repartidor
+        function calcularDistancia(repartidor){
+            const R = 5000; // Radio de la Tierra en metros
+            const deltaLatitud = gradosRadianes(repartidor.latitud - position.lat);
+            const deltaLongitud = gradosRadianes(repartidor.longitud - position.lng);
+            // const lngBase = gradosRadianes(position.lng);
+            const latBase = gradosRadianes(position.lat) 
+            const latRepartidor = gradosRadianes(repartidor.latitud);
+            // const lngRepartidor = gradosRadianes(repartidor.longitud);
+            var a = Math.pow(Math.sin(deltaLatitud / 2) , 2) + Math.cos(latBase) * Math.cos(latRepartidor) * Math.pow(Math.sin(deltaLongitud / 2), 2);
+            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)); //Caular la distancia real
+            var d = 2*Math.asin(a);
+            console.log(R * c)
+            return R * c;
         }
 
         repartidoreBD.forEach(repartidor => {
@@ -82,7 +101,7 @@ function CalcularPosicion(lat, lng, distancia, rumbo) {
         const distancia = Math.random()*3.
         const latRepartidor = repartidor.latitud;
         const lngRepartidor = repartidor.longitud;
-        const nvoPosicionRepartidor = new ubicacionRepartidor(id, calcularRumbo(repartidor), 0, latRepartidor, lngRepartidor);
+        const nvoPosicionRepartidor = new ubicacionRepartidor(id, calcularRumbo(repartidor), calcularDistancia(repartidor), latRepartidor, lngRepartidor);
         Repartidores.push(nvoPosicionRepartidor);
 
         const posicion = { lat: latRepartidor, lng:lngRepartidor };
@@ -90,7 +109,7 @@ function CalcularPosicion(lat, lng, distancia, rumbo) {
 
     });
 
-    // console.log(Repartidores);
+    console.log(Repartidores);
 
     // const nvoPosicionRepartidor = new ubicacionRepartidor(1,180,3.9) //Prueba de creacion de nuevo objeto para meter info
     // const nuevaPosicion = CalcularPosicion(position.lat, position.lng, nvoPosicionRepartidor._distanciaActualDelCentro, nvoPosicionRepartidor.rumbo);
@@ -146,7 +165,7 @@ function CalcularPosicion(lat, lng, distancia, rumbo) {
     });
     
     // “Añade un agrupador de marcadores para administrar los marcadores
-    new MarkerClusterer({ markers, map });
+    // new MarkerClusterer({ markers, map });
 
     } /* Final del init map */
 
