@@ -4,11 +4,12 @@ const Repartidores = [];
 const locations = [
     { lat: 14.0857108, lng: -87.1994419  },
     ];
+const locationNegocios = [];
 var markersGlbal = [];
-
+var makerNegocios = [];
 var mapaGlobal = '';
-var markerGlobal;
-
+const imageRepartidor = "/imagenes/cascoLogo.png";
+const imageNegocio = "/imagenes/LogoTienda.png";
 
 // console.log(repartidoreBD);//
 
@@ -74,7 +75,7 @@ function RadianesGrados(radianes){
             // .then(response => response.json())
             // .then(data => console.log(data));
             eliminarMarcadores();
-            crearMarcadores(mapaGlobal);
+            crearMarcadores(mapaGlobal, imageRepartidor, locations);
 }
 
 
@@ -86,7 +87,7 @@ function RadianesGrados(radianes){
     }
 
 
-        async function crearMarcadores(map){
+        async function crearMarcadores(map, image, mapPosition, tipo){
 
                         const infoWindow = new google.maps.InfoWindow({
                             content: "",
@@ -94,13 +95,13 @@ function RadianesGrados(radianes){
                         });
 
                         // Añade algunos marcadores al mapa No se usan
-                        var markers = locations.map((posiciones) => {
+                        mapPosition.map((posiciones) => {
 
                             //Imagen para indicadores de conductores -----
         
                             const beachFlagImg = document.createElement("img"); //creamos una imagen en el html
                             // const beachFlagImg.src = "/imagenes/logoRepartidor.jpg";
-                            beachFlagImg.src = "/imagenes/cascoLogo.png"; //decimos a que es igual esa imagen
+                            beachFlagImg.src = image; //decimos a que es igual esa imagen
                             beachFlagImg.width = 23; // Ancho de la imagen en píxeles
                             beachFlagImg.height = 23; // Alto de la imagen en píxeles
         
@@ -116,22 +117,21 @@ function RadianesGrados(radianes){
                             content: beachFlagImg, // le decimos que los nuevos inconos seran la imagen que importamos
                         });
 
-                        markersGlbal.push(marker);
+                        if(tipo === 'negocio'){
+                            makerNegocios.push(marker);
+                        }else{
+                            markersGlbal.push(marker);
+                        }
         
                         // console.log(Repartidores);
         
-                                    // abre la ventana de información cuando se hace clic en el marcador
+                                // abre la ventana de información cuando se hace clic en el marcador
                             marker.addListener("click", () => {
                                 infoWindow.setContent(posiciones.lat + ", " + posiciones.lng); //Este sera modificado para despues poner los nombres de los negocios
                                 infoWindow.open(map, marker); //Abre el globo de texto
                                 map.setCenter(posiciones);
                                 map.setZoom(16);
-                                }); 
-
-                        // console.log(Repartidores);
-        
-                        // setInterval(actualizarUbicaciones, 4000);
-                        return marker; //no necesario pero se deja
+                                });
                         });
 
 
@@ -174,11 +174,8 @@ function RadianesGrados(radianes){
             return d;
         }
 
-        
+        //Meter ubicaciones traida de la base de datos a location
         repartidoreBD.forEach(repartidor => {
-            // console.log(repartidor.idusuario);
-            // console.log(repartidor.personas.primernombre);
-            //Crear nuevo objeto en base a infomracion de base de datos y guardarlo en un arreglo
             const id = repartidor.idusuario;
             const latRepartidor = repartidor.latitud;
             const lngRepartidor = repartidor.longitud;
@@ -186,13 +183,19 @@ function RadianesGrados(radianes){
             Repartidores.push(nvoPosicionRepartidor);
             const posicion = { lat: latRepartidor, lng:lngRepartidor };
             locations.push(posicion);
-            // console.log(nvoPosicionRepartidor.ModificarDireccion());
-            // console.log(nvoPosicionRepartidor.ModificarAngulo());
-    
+        });
+
+        //Meter ubicaciones traida de la base de datos a locationNegocios
+        negociosBD.forEach(negocio => {
+            const ubicacionNegocio = {lat: negocio.latitud, lng:negocio.longitud};
+            locationNegocios.push(ubicacionNegocio);
         });
 
 
     async function initMap() {
+
+        console.log(negociosBD);
+
             // Librerias necesarias para el mapa, map, infoWindows y marker
             const { Map, InfoWindow } = await google.maps.importLibrary("maps");
             const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary(
@@ -221,23 +224,9 @@ function RadianesGrados(radianes){
                 map, // Asocia el círculo al mapa que has creado
                 center: position, // Centro del círculo en las coordenadas de latitud y longitud
                 radius: 5000, // Radio del círculo en metros, es el mismo que definimos arriba
-            });
-
-
-                //Es el que nos traera globos de texto para nuestro mapa cuando toquemos los iconos
-                //Por los son vacios    
-
-             markerGlobal = crearMarcadores(map); //Creamos los marcadores
-             
-        // console.log(Repartidores);
-
-    
-
-        // const hxr = new XMLHttpRequest();
-        // hxr.open('GET', 'http://localhost:8081/api/Usuario/TraerRepartidores');
-        // hxr.send();
-
-
+            });  
+            //  markerGlobal = crearMarcadores(map, imageRepartidor, locations); //Creamos los marcadores
+             crearMarcadores(map,imageNegocio, locationNegocios, 'negocio');
     } /* Final del init map */
 
 

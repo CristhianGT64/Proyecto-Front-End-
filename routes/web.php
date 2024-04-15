@@ -16,15 +16,15 @@ Route::post('/Usuario/GuardarUsuario', [UsuarioController::class,'GuardarUsuario
 
 
 //Pruebas de vistas
-Route::get('/prueba/MapaMarcadores', function () {
-    $obtenerRepartidores = Http::get('http://localhost:8081/api/Usuario/TraerRepartidores');
-    $repartidores = $obtenerRepartidores->json();
-    return view('PruebaMapaMarcadores', compact('repartidores'));
-})->name("Login");
+// Route::get('/prueba/MapaMarcadores', function () {
+//     $obtenerRepartidores = Http::get('http://localhost:8081/api/Usuario/TraerRepartidores');
+//     $repartidores = $obtenerRepartidores->json();
+//     return view('PruebaMapaMarcadores', compact('repartidores'));
+// })->name("Login");
 
 
 //Negocios =====================================================================
 Route::get('/negocio/agregarNegocio',[NegocioConroller::class, 'agregarNegocio'])->name('negocio.agregarNegocio');
 Route::post('/negocio/guardarNegocio', [NegocioConroller::class, 'guardarNegocio'])->name('negocio.guardarNegocio');
-
+Route::get('/negocio/VerMapa', [NegocioConroller::class, 'verMapa'])->name('negocio.mapa');
 

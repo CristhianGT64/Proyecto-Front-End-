@@ -7,6 +7,7 @@
     _lngCentro = -87.1994419;
     _latRepartidor = 0;
     _lngRepartidor = 0;
+    _disponible = true;
 
     // Constructo Vacio
     // constructor() {
@@ -22,20 +23,19 @@
     }
 
     ModificarDireccion(){
-        // console.log(Math.floor(Math.random() * (max - min)) + min);
         if(this._distanciaActualDelCentro >= 5){
             return this._distanciaActualDelCentro -= .8;
         }
-        return this._distanciaActualDelCentro += (Math.random() * 2 - 1); //Hace una distancia aleatoria que sumara o restara
+        // Cambia el rango de los valores aleatorios para que sean más pequeños
+        return this._distanciaActualDelCentro += (Math.random() * 0.2 - 0.1);
     }
 
     ModificarAngulo(){
         if(this._rumbo >= 380){
            return this.rumbo -= 2;
-       }
-       return this._rumbo +=  (Math.random() * 5 - 5);
-
-        // return this._rumbo;
+        }
+        // Cambia el rango de los valores aleatorios para que sean más pequeños
+        return this._rumbo +=  (Math.random() * 1 - 0.5);
     }
 
     get idRepartidor() {
@@ -83,4 +83,12 @@
     set lngRepartidor(value) {
         this._lngRepartidor = value;
     }
+
+    get disponible() {
+        return this._disponible;
+    }
+    set disponible(value) {
+        this._disponible = value;
+    }
+
 }

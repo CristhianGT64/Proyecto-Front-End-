@@ -11,6 +11,16 @@ class NegocioConroller extends Controller
         return view("CrearNegocio");
     }
 
+    public function verMapa(){
+        $obtenerRepartidores = Http::get('http://localhost:8081/api/Usuario/TraerRepartidores');
+        $repartidores = $obtenerRepartidores->json();
+
+        $obtenerNegocios = Http::get('http://localhost:8081/api/negocio/TodosNegocios');
+        $negocios = $obtenerNegocios->json();
+
+        return view('MapaAdministrador', compact('repartidores', 'negocios'));
+    }
+
     public function guardarNegocio(Request $request){
         $guardarNegocio = Http::post('http://localhost:8081/api/negocio/crear',[
             'nombre'=>$request->nombreNegocio,

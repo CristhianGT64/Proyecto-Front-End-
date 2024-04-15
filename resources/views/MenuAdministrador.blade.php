@@ -10,5 +10,7 @@
     <h1>Administrador</h1>
 
     <a href="{{route('negocio.agregarNegocio')}}">Agregar Negocio</a>
+    <br>
+    <a href="{{route('negocio.mapa')}}">Ver mapa</a>
 </body>
 </html>
