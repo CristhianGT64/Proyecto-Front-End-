@@ -15,11 +15,6 @@ class UsuarioController extends Controller
         ]);
         //Pasar de json a arreglo
         $UsusarioActivo = $ususario->json();
-        // var_dump($UsusarioActivo);
-        // exit;
-
-        // var_dump($UsusarioActivo);
-        // exit;
         //Validamos si existe el usuario y no sea null
         if($UsusarioActivo){
             //Si no es null comprobamos que tipo de usuario es
@@ -44,13 +39,23 @@ class UsuarioController extends Controller
             return view('MenuAdministrador', compact('UsusarioActivo'));
         }
         else if($UsusarioActivo['roles']["idrol"] === 2){
-            return view('MenuUsuario', compact('UsusarioActivo'));
-        }
-        elseif($UsusarioActivo['roles']["idrol"] === 3){
             return view('MenuRepartido', compact('UsusarioActivo'));
         }
-
+        elseif($UsusarioActivo['roles']["idrol"] === 3){
+            return view('MenuUsuario', compact('UsusarioActivo'));
+        }
+        elseif($UsusarioActivo['roles']["idrol"] === 4){
+            return $this->NegocioAdministrador($UsusarioActivo);
+        }
         return redirect('/');
+    }
+
+    public function NegocioAdministrador($UsusarioActivo){
+        $negocio = Http::get('http://localhost:8081/api/negocio/TraerNegocio', [
+            "idUsuario" => $UsusarioActivo['idusuario']
+        ]);
+        $negocioUsuario = $negocio->json();
+        return view('MenuAdministradorTienda', compact('UsusarioActivo','negocioUsuario'));
     }
 
     public function CrearUsusarioNuevo(){
