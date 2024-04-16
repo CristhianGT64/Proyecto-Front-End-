@@ -30,8 +30,8 @@ Route::post('/negocio/guardarNegocio', [NegocioConroller::class, 'guardarNegocio
 Route::get('/negocio/VerMapa', [NegocioConroller::class, 'verMapa'])->name('negocio.mapa');
 
 //Producto ======================================================================
-Route::get('/product/crearProducto',[ProductoController::class, 'CrearProducto'])->name('producto.CrearProducto');
-Route::post('/product/GuardarProducto',[ProductoController::class, 'GuardarProducto'])->name('producto.GradarProducto');
+Route::get('/product/crearProducto/{idNegocio}',[ProductoController::class, 'CrearProducto'])->name('producto.CrearProducto');
+Route::post('/product/GuardarProducto/{idNegocio}',[ProductoController::class, 'GuardarProducto'])->name('producto.GradarProducto');
 
 
 

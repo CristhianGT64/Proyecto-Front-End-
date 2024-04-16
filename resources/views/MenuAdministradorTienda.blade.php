@@ -9,6 +9,7 @@
 <body>
     <h1>Bienvenido a  {{$negocioUsuario['nombre']}} </h1>
     <br>
-    <a href="{{route('producto.CrearProducto')}}">Agregar nuevo producto</a>
+    {{-- Enviamos la informacion de inicio de sesion a la vista --}}
+    <a href="{{route('producto.CrearProducto', $negocioUsuario['idnegocio'])}}">Agregar nuevo producto</a>
 </body>
 </html>

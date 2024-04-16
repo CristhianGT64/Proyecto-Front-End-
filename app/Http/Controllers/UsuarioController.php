@@ -51,6 +51,8 @@ class UsuarioController extends Controller
     }
 
     public function NegocioAdministrador($UsusarioActivo){
+        session_start(); //Super Glbal Para inicio de sesion
+        $_SESSION["idUsuario"] = $UsusarioActivo['idusuario'];
         $negocio = Http::get('http://localhost:8081/api/negocio/TraerNegocio', [
             "idUsuario" => $UsusarioActivo['idusuario']
         ]);
