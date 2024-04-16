@@ -55,7 +55,7 @@ class UsuarioController extends Controller
             "idUsuario" => $UsusarioActivo['idusuario']
         ]);
         $negocioUsuario = $negocio->json();
-        return view('MenuAdministradorTienda', compact('UsusarioActivo','negocioUsuario'));
+        return view('MenuAdministradorTienda', compact('negocioUsuario'));
     }
 
     public function CrearUsusarioNuevo(){

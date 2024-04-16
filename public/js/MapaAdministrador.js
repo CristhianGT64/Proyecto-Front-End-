@@ -171,6 +171,7 @@ function RadianesGrados(radianes){
             if(d < 0){
                 return (d*-1)
             }
+            console.log(d);
             return d;
         }
 

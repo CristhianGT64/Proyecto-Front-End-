@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\NegocioConroller;
+use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Http;
@@ -27,4 +28,10 @@ Route::post('/Usuario/GuardarUsuario', [UsuarioController::class,'GuardarUsuario
 Route::get('/negocio/agregarNegocio',[NegocioConroller::class, 'agregarNegocio'])->name('negocio.agregarNegocio');
 Route::post('/negocio/guardarNegocio', [NegocioConroller::class, 'guardarNegocio'])->name('negocio.guardarNegocio');
 Route::get('/negocio/VerMapa', [NegocioConroller::class, 'verMapa'])->name('negocio.mapa');
+
+//Producto ======================================================================
+Route::get('/product/crearProducto',[ProductoController::class, 'CrearProducto'])->name('producto.CrearProducto');
+Route::post('/product/GuardarProducto',[ProductoController::class, 'GuardarProducto'])->name('producto.GradarProducto');
+
+
 
