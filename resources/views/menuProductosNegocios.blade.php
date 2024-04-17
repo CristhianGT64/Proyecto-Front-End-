@@ -38,39 +38,21 @@
   <div class="container">
     <h2 class="text-center mb-5">Nuestros Productos</h2>
     <div class="row">
+
+      @foreach($productos as $producto) 
       <div class="col-md-4">
         <div class="card">
-          <img src="producto1.jpg" class="card-img-top" alt="Producto 1">
+          <img src="{{$producto['imagen']}}" class="card-img-top" alt="Producto 1" height="200">
           <div class="card-body">
-            <h5 class="card-title">Producto 1</h5>
-            <p class="card-text">Descripción del producto 3.</p>
-            <p class="card-text">Precio: $100</p>
+            <h5 class="card-title">{{$producto['nombre']}}</h5>
+            <p class="card-text">{{$producto['descripción']}}</p>
+            <p class="card-text">Precio: {{$producto['precio']}}</p>
             <a href="#" class="btn btn-primary">Ordenar</a>
           </div>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="card">
-          <img src="producto2.jpg" class="card-img-top" alt="Producto 2">
-          <div class="card-body">
-            <h5 class="card-title">Producto 2</h5>
-            <p class="card-text">Descripción del producto 3.</p>
-            <p class="card-text">Precio: $100</p>
-            <a href="#" class="btn btn-primary">Ordenar</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card">
-          <img src="producto3.jpg" class="card-img-top" alt="Producto 3">
-          <div class="card-body">
-            <h5 class="card-title">Producto 3</h5>
-            <p class="card-text">Descripción del producto 3.</p>
-            <p class="card-text">Precio: $100</p>
-            <a href="#" class="btn btn-primary">Ordenar</a>
-          </div>
-        </div>
-      </div>
+      @endforeach
+      
     </div>
   </div>
 </section>

@@ -52,5 +52,15 @@ class NegocioConroller extends Controller
             return view('CrearNegocio.blade');
         };
     }
+
+    public function traerProductosXnegocio($idnegocio){
+
+        $productosNegocio = Http::get('http://localhost:8081/api/Producto/ProductoxNegocio',[
+            "idNegocio" => $idnegocio,
+        ]);
+
+        $productos  = $productosNegocio->json();
+        return view('menuProductosNegocios', compact('productos'));
+    }
     
 }
