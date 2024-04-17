@@ -42,28 +42,20 @@
 <div class="container">
     <h1 class="text-center mt-5">Locales</h1>
     <div class="row mt-5">
+      @foreach ($negocios as $negocio)
       <div class="col-md-6">
         <div class="card">
-          <img src="pizza.jpg" class="card-img-top" alt="Pizza">
+          <img src="https://www.lavanguardia.com/files/og_thumbnail/files/fp/uploads/2021/03/30/6063031b90a87.r_d.1083-871-0.jpeg" class="card-img-top" alt="Pizza">
           <div class="card-body">
-            <h5 class="card-title">Papa Johns</h5>
+            <h5 class="card-title">{{$negocio['nombre']}}</h5>
             <p class="card-text">¡Deliciosas pizzas recién horneadas!</p>
             <a href="#" class="btn btn-primary">Ordenar</a>
           </div>
-        </div>
+        </div><br>
       </div>
-      <div class="col-md-6">
-        <div class="card">
-          <img src="hamburguesa.jpg" class="card-img-top" alt="Hamburguesa">
-          <div class="card-body">
-            <h5 class="card-title">KFC</h5>
-            <p class="card-text">Sabrosas hamburguesas con ingredientes frescos.</p>
-            <a href="#" class="btn btn-primary">Ordenar</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+      @endforeach
+      
+      
 
 
 </body>
