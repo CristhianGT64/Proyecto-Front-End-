@@ -42,7 +42,7 @@
                         </div>
                         <div>
                             <label for="imagen">Imagen</label>
-                            <input type="file" name="imagen" id="imagen" accept="image/jpeg, image/png">
+                            <input type="file" name="imagen" id="imagen" accept="image/jpeg, image/png, image/jpg">
                         </div>
                         <div>
                             <input type="submit" value="Guardar Producto">

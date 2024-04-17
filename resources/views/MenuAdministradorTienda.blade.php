@@ -15,20 +15,20 @@
 
     <section id="productos" class="py-5">
         <div class="container">
-          <h2 class="text-center mb-5">Nuestros Productos</h2>
+          <h2 class="text-center mb-5">Productos de {{$negocioUsuario['nombre']}}</h2>
           <div class="row">
             @foreach ($productos as $producto)
             <div class="col-md-4">
               <div class="card">
-                <img src="/imagenesProductos/926dc99b6509736b825b4b90438de996.jpg" class="card-img-top" alt="Producto">
+                <img  src="/imagenesProductos/{{$producto['imagen']}}" height="250" class="card-img-top" alt="Producto">
                 <div class="card-body">
-                  <h5 class="card-title">Producto 1</h5>
-                  <p class="card-text">Descripción del producto 3.</p>
-                  <p class="card-text">Precio: $100</p>
+                  <h5 class="card-title">{{$producto['nombre']}}</h5>
+                  <p class="card-text">{{$producto['descripción']}}</p>
+                  <p class="card-text">Precio: L. {{$producto['precio']}}</p>
                   <a href="#" class="btn btn-primary">Ordenar</a>
                 </div>
               </div>
-
+              <br>
             </div>
             @endforeach
           </div>

@@ -22,21 +22,17 @@ class ProductoController extends Controller
         //UNA SUBER GLOBAL ES AQUELLA QUE ESTA DISPONIBLE EN CUALQUIER LUGAR DEL SCRIPT
 
         //creacion de carpeta donde se guardaran las 
-        $carpetaImagenesProductos = "../resources/imagenesProductos";
+        $carpetaImagenesProductos = "../public/imagenesProductos";
 
         //Le pondremos un nombre aleatorio para que no se repitan y sean remplazados
         $nombreImagen = md5(uniqid(rand(), true)).'.jpg'; //Nuevo nombre generado para la imagen
-        $UbicionmasNombre = $carpetaImagenesProductos.'/'.$nombreImagen;
+        // $UbicionmasNombre = $carpetaImagenesProductos.'/'.$nombreImagen;
 
         //Validamos que si la carpeta no existe la cree
         if (!is_dir($carpetaImagenesProductos)){
             mkdir($carpetaImagenesProductos);  //Creamos el directorio de imagenes
         }
 
-        //Subir las imagenes al sistemas
-        
-        move_uploaded_file($image , $UbicionmasNombre);
-        // Guardar Producto en base de datos
 
         $guadarProducto = Http::post('http://localhost:8081/api/Producto/GuardarProducto', [
             "categoria"=>[
@@ -49,8 +45,14 @@ class ProductoController extends Controller
             "descripción"=>$request->descripcion,
             "precio"=>$request->precio,
             "cantidad"=>$request->categoria,
-            "imagen"=>$UbicionmasNombre
+            "imagen"=>$nombreImagen
         ]);
+        
+        
+        //Subir las imagenes al sistemas
+        move_uploaded_file($image , $carpetaImagenesProductos.'/'.$nombreImagen);
+        // Guardar Producto en base de datos
+
         
         if($guadarProducto->json()){
             return  $this->NegocioAdministrador();
