@@ -14,6 +14,7 @@ class ProductoController extends Controller
         return view("CrearProducto", compact('idNegocio', 'categorias'));
     }
 
+
     public function GuardarProducto($idNegocio ,Request $request){
         session_start();
 
@@ -33,7 +34,8 @@ class ProductoController extends Controller
         }
 
         //Subir las imagenes al sistemas
-        move_uploaded_file(file_exists($image), $UbicionmasNombre);
+        
+        move_uploaded_file($image , $UbicionmasNombre);
         // Guardar Producto en base de datos
 
         $guadarProducto = Http::post('http://localhost:8081/api/Producto/GuardarProducto', [
@@ -61,6 +63,10 @@ class ProductoController extends Controller
             "idUsuario" => $_SESSION['idUsuario']
         ]);
         $negocioUsuario = $negocio->json();
-        return view('MenuAdministradorTienda', compact('negocioUsuario'));
+        $proucductosNegocio = Http::get('http://localhost:8081/api/Producto/ProductoxNegocio',[
+            "idNegocio" => $negocioUsuario['idnegocio'],
+        ]);
+        $productos = $proucductosNegocio->json();
+        return view('MenuAdministradorTienda', compact('negocioUsuario', 'productos'));
     }
 }

@@ -49,7 +49,7 @@ class UsuarioController extends Controller
         }
         return redirect('/');
     }
-
+    //locastorage
     public function NegocioAdministrador($UsusarioActivo){
         session_start(); //Super Glbal Para inicio de sesion
         $_SESSION["idUsuario"] = $UsusarioActivo['idusuario'];
@@ -57,7 +57,12 @@ class UsuarioController extends Controller
             "idUsuario" => $UsusarioActivo['idusuario']
         ]);
         $negocioUsuario = $negocio->json();
-        return view('MenuAdministradorTienda', compact('negocioUsuario'));
+        $proucductosNegocio = Http::get('http://localhost:8081/api/Producto/ProductoxNegocio',[
+            "idNegocio" => $negocioUsuario['idnegocio'],
+        ]);
+        $productos = $proucductosNegocio->json();
+
+        return view('MenuAdministradorTienda', compact('negocioUsuario', 'productos'));
     }
 
     public function CrearUsusarioNuevo(){
