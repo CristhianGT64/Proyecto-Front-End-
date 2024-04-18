@@ -45,7 +45,7 @@
       @foreach ($negocios as $negocio)
       <div class="col-md-4 ">
         <div class="card">
-          <img src="{{$negocio['imagen']}}" class="card-img-top" alt="Pizza"  height="200">
+          <img src="/imagenesProductos/{{$negocio['imagen']}}" class="card-img-top" alt="Pizza"  height="200">
           <div class="card-body">
             <h5 class="card-title">{{$negocio['nombre']}}</h5>
             <p class="card-text">{{$negocio['descripccion']}}</p>

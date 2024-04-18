@@ -42,7 +42,7 @@
       @foreach($productos as $producto) 
       <div class="col-md-4">
         <div class="card">
-          <img src="{{$producto['imagen']}}" class="card-img-top" alt="Producto 1" height="200">
+          <img src="/imagenesProductos/{{$producto['imagen']}}" class="card-img-top" alt="Producto 1" height="200">
           <div class="card-body">
             <h5 class="card-title">{{$producto['nombre']}}</h5>
             <p class="card-text">{{$producto['descripción']}}</p>
