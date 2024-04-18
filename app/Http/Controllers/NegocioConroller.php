@@ -22,13 +22,26 @@ class NegocioConroller extends Controller
     }
 
     public function guardarNegocio(Request $request){
+
+        $image = ($_FILES['imagen']['tmp_name']);
+
+        $carpetaImagenesNegocios = "../public/imagenesNegocios";
+
+        $nombreImagen = md5(uniqid(rand(), true)).'.jpg';
+
+        if (!is_dir($carpetaImagenesNegocios)){
+            mkdir($carpetaImagenesNegocios);  //Creamos el directorio de imagenes
+        }
+
         $guardarNegocio = Http::post('http://localhost:8081/api/negocio/crear',[
             'nombre'=>$request->nombreNegocio,
-            'telefono'=>$request->telefonoNegocio,
+            'teléfono'=>$request->telefonoNegocio,
             'hora_apertura'=>$request->horaApertura,
             'hora_cierre'=>$request->horaCierre,
             'latitud'=>$request->latitud,
             'longitud'=>$request->longitud,
+            'descripcion'=>$request->descripcion,
+            'imagen'=>$nombreImagen,
             'usuarios'=>[
                 "email"=>$request->email,
                 "contrasena"=>$request->contrasena,
@@ -43,13 +56,14 @@ class NegocioConroller extends Controller
 
         ]);
 
+        move_uploaded_file($image , $carpetaImagenesNegocios.'/'.$nombreImagen);
+
         var_dump($guardarNegocio->json());
-        exit;
 
         if($guardarNegocio){
-            return redirect('MenuAdministrador');
+            return view('MenuAdministrador');
         }else {
-            return view('CrearNegocio.blade');
+            return redirect('/negocio/agregarNegocio');
         };
     }
 

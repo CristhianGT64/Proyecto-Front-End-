@@ -13,7 +13,7 @@
 
     <h1>Agregar Negocio</h1>
     <div>
-        <form action="{{route('negocio.guardarNegocio')}}" method="POST"> {{-- Fomrulario de creacion de usuario --}}
+        <form action="{{route('negocio.guardarNegocio')}}" method="POST" enctype="multipart/form-data"> {{-- Fomrulario de creacion de negocio --}}
             @csrf
             <div>
                 <fieldset>
@@ -29,7 +29,13 @@
     
                     <label for="hora_cierre">Hora de Cierre:</label><br>
                     <input type="time" id="hora_cierre" name="horaCierre" required><br><br>
-                    </fieldset>
+
+                    <label for="descripcion">Descripcion:</label><br>
+                    <textarea name="descripcion" id="descripcion" cols="40" rows="3"></textarea><br><br>
+
+                    <label for="imagen">Imagen</label>
+                    <input type="file" name="imagen" id="imagen" accept="image/jpeg, image/png, image/jpg">
+                </fieldset>
                 <br>
 
                 <h3>Datos del administrador</h3>
