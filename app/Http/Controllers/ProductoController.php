@@ -175,4 +175,9 @@ class ProductoController extends Controller
         return $this->NegocioAdministrador(); 
     }
 
+    public function cerrarSesion(){
+        session_abort();
+        return redirect('/');
+    }
+
 }

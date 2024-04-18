@@ -28,7 +28,7 @@
         </ul>
          <!-- Agregar el nombre de usuario -->
          <span class="navbar-text">
-          <a href="{{route('Login')}}" class="btn btn-outline-secondary">Cerrar Sesion</a>
+          <a href="{{route('negocio.cerrarSesionAdminENegocio')}}" class="btn btn-outline-secondary">Cerrar Sesion</a>
 
           <br>
           <br>
