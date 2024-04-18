@@ -22,10 +22,12 @@
               <div class="card">
                 <img  src="/imagenesProductos/{{$producto['imagen']}}" height="250" class="card-img-top" alt="Producto">
                 <div class="card-body">
-                  <h5 class="card-title">{{$producto['nombre']}}</h5>
+                  <h5 class="card-title fw-bold" >{{$producto['nombre']}}</h5>
                   <p class="card-text">{{$producto['descripción']}}</p>
                   <p class="card-text">Precio: L. {{$producto['precio']}}</p>
-                  <a href="#" class="btn btn-primary">Ordenar</a>
+                  <p class="card-text">Cantidad: {{$producto['cantidad']}}</p>
+                  <a href="{{route('producto.ActualizaProducto', $producto['idproducto'], $negocioUsuario['idnegocio'])}}" class="btn btn-primary">Actualizar</a>
+                  <a href="{{route('producto.ActualizaProducto', $producto['idproducto'], $negocioUsuario['idnegocio'])}}" class="btn btn-danger">Eliminar</a>
                 </div>
               </div>
               <br>

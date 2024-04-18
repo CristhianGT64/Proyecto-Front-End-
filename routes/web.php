@@ -33,6 +33,11 @@ Route::get('/negocio/VerMapa', [NegocioConroller::class, 'verMapa'])->name('nego
 //Producto ======================================================================
 Route::get('/product/crearProducto/{idNegocio}',[ProductoController::class, 'CrearProducto'])->name('producto.CrearProducto');
 Route::post('/product/GuardarProducto/{idNegocio}',[ProductoController::class, 'GuardarProducto'])->name('producto.GradarProducto');
+Route::get('/product/ActualizarProducto/{idProducto}',[ProductoController::class, 'ActualizarProducto'])->name('producto.ActualizaProducto');
+Route::put('/product/GuadarCambiosProducto/',[ProductoController::class, 'GuardarCambiosProductos'])->name('producto.GradarCambios');
+
+
+
 
 //Categoria =====================================================================
 Route::get('/categoria/crearCategoria', [CategoriaController::class, 'agregarCategoria'])->name('categoria.agregarCategoria');
