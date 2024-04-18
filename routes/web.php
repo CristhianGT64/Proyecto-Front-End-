@@ -8,10 +8,14 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Http;
 
 Route::get('/', function () {
+    // var_dump($_SESSION);
+
+    // session_abort();
+    // exit;
     return view('Login');
 })->name("Login");
 
-//Usuarios
+//Usuarios ================================================
 Route::post('/Login', [UsuarioController::class,'IniciarSesion'])->name('usuario.Login');
 Route::get('/Usuario/CrearUsuario', [UsuarioController::class,'CrearUsusarioNuevo'])->name('usuario.CrearUsusario');
 Route::post('/Usuario/GuardarUsuario', [UsuarioController::class,'GuardarUsuario'])->name('usuario.GuardarUsuario');
