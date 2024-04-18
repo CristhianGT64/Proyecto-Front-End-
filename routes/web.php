@@ -36,8 +36,9 @@ Route::get('/product/crearProducto/{idNegocio}',[ProductoController::class, 'Cre
 Route::post('/product/GuardarProducto/{idNegocio}',[ProductoController::class, 'GuardarProducto'])->name('producto.GradarProducto');
 Route::get('/product/ActualizarProducto/{idProducto}',[ProductoController::class, 'ActualizarProducto'])->name('producto.ActualizaProducto');
 Route::put('/product/GuadarCambiosProducto/{idnegocio}/{idproducto}',[ProductoController::class, 'GuardarCambiosProductos'])->name('producto.GuardarCambios');
-
-
+Route::get('/product/ConsultaEliminarProducto/{idProducto}',[ProductoController::class, 'ConsultaEliminarProducto'])->name('producto.consEliminarProducto');
+Route::get('/product/EliminarProducto/{idProducto}',[ProductoController::class, 'EliminarProducto'])->name('producto.EliminarProducto');
+Route::get('/negocio/MenuPrincipal',[ProductoController::class, 'regresarMenuPrincipal'])->name('negocio.menuPrincipal');
 
 
 //Categoria =====================================================================

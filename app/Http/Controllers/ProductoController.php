@@ -62,18 +62,12 @@ class ProductoController extends Controller
 
     public function NegocioAdministrador(){
 
-        var_dump($_SESSION);
-
         $negocio = Http::get('http://localhost:8081/api/negocio/TraerNegocio', [
             "idUsuario" => $_SESSION['idUsuario']
         ]);
 
-        // var_dump($negocio);
-        // exit;
-
         $negocioUsuario = $negocio->json();
-        // var_dump($negocioUsuario);
-        // exit;
+
         $proucductosNegocio = Http::get('http://localhost:8081/api/Producto/ProductoxNegocio',[
             "idNegocio" => $negocioUsuario['idnegocio'],
         ]);
@@ -146,5 +140,34 @@ class ProductoController extends Controller
             return redirect('/product/crearProducto', $idNegocio);
 
         } 
+
+    public function ConsultaEliminarProducto($idProducto){
+
+        session_start();
+
+        $TraerProducto = Http::get('http://localhost:8081/api/producto/BuscarProducto',[
+            'idProducto'=> $idProducto,
+        ]);
+        $producto = $TraerProducto->json();
+
+        return view('EliminarProducto', compact('producto'));
+    }
+
+    public function EliminarProducto($idProducto){
+        session_start();
+
+
+        Http::get('http://localhost:8081/api/producto/Eliminar',[
+            'idProducto'=> $idProducto
+        ]);
+
+        return $this->NegocioAdministrador();
+
+    }
+
+    public function regresarMenuPrincipal(){
+        session_start();
+        return $this->NegocioAdministrador(); 
+    }
 
 }
