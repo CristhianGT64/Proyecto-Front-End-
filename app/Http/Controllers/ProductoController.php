@@ -61,14 +61,25 @@ class ProductoController extends Controller
     }
 
     public function NegocioAdministrador(){
+
+        var_dump($_SESSION);
+
         $negocio = Http::get('http://localhost:8081/api/negocio/TraerNegocio', [
             "idUsuario" => $_SESSION['idUsuario']
         ]);
+
+        // var_dump($negocio);
+        // exit;
+
         $negocioUsuario = $negocio->json();
+        // var_dump($negocioUsuario);
+        // exit;
         $proucductosNegocio = Http::get('http://localhost:8081/api/Producto/ProductoxNegocio',[
             "idNegocio" => $negocioUsuario['idnegocio'],
         ]);
         $productos = $proucductosNegocio->json();
+
+
         return view('MenuAdministradorTienda', compact('negocioUsuario', 'productos'));
     }
 
@@ -85,10 +96,7 @@ class ProductoController extends Controller
     }
 
 
-    public function GuardarCambiosProductos(Request $request, ){
-        var_dump($_FILES);
-        var_dump($request->imagenAct);
-
+    public function GuardarCambiosProductos(Request $request, $idNegocio, $idProducto ){
         session_start();
 
             if(($image = ($_FILES['imagen']['tmp_name']) != "")){
@@ -111,19 +119,31 @@ class ProductoController extends Controller
                 $nombreImagen = $request->imagenAct;
             }
 
-            $guadarProducto = Http::post('http://localhost:8081/api/Producto/GuardarProducto', [
+            $guadarProducto = Http::put('http://localhost:8081/api/producto/ActualizarProducto', [
+                "idproducto"=>$idProducto,
                 "categoria"=>[
                     "idcategoria"=>$request->categoria,
                 ],
                 "negocio"=>[
-                    // "idnegocio"=>$idNegocio,
+                    "idnegocio"=>$idNegocio,
                 ],
                 "nombre"=>$request->nombre,
                 "descripción"=>$request->descripcion,
                 "precio"=>$request->precio,
-                "cantidad"=>$request->categoria,
+                "cantidad"=>$request->cantidad,
                 "imagen"=>$nombreImagen
             ]);
+
+            if($image != ""){
+                //Subir las imagenes al sistemas
+                move_uploaded_file($image , $carpetaImagenesProductos.'/'.$nombreImagen);
+                // Guardar Producto en base de datos
+            }
+            
+            if($guadarProducto->json()){
+                return  $this->NegocioAdministrador();
+            }
+            return redirect('/product/crearProducto', $idNegocio);
 
         } 
 

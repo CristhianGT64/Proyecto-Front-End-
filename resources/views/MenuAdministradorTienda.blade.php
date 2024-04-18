@@ -26,7 +26,7 @@
                   <p class="card-text">{{$producto['descripción']}}</p>
                   <p class="card-text">Precio: L. {{$producto['precio']}}</p>
                   <p class="card-text">Cantidad: {{$producto['cantidad']}}</p>
-                  <a href="{{route('producto.ActualizaProducto', $producto['idproducto'], $negocioUsuario['idnegocio'])}}" class="btn btn-primary">Actualizar</a>
+                  <a href="{{route('producto.ActualizaProducto', $producto['idproducto'])}}" class="btn btn-primary">Actualizar</a>
                   <a href="{{route('producto.ActualizaProducto', $producto['idproducto'], $negocioUsuario['idnegocio'])}}" class="btn btn-danger">Eliminar</a>
                 </div>
               </div>

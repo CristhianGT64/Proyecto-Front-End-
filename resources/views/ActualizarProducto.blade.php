@@ -8,8 +8,14 @@
 </head>
 <body>
     <h1>ActualizaR Prodcuto</h1>
+
+    {{-- @php
+        var_dump($producto['idproducto']);
+        exit;
+    @endphp --}}
+
     <div>
-        <form action="{{route('producto.GradarCambios')}}" method="POST" enctype="multipart/form-data"> {{-- Fomrulario de creacion de usuario --}}
+        <form action="{{route('producto.GuardarCambios', ['idnegocio'=> $producto['negocio']['idnegocio'] , 'idproducto'=> $producto['idproducto']])}}" method="POST" enctype="multipart/form-data"> {{-- Fomrulario de creacion de usuario --}}
             @method('PUT')
             @csrf
             <div>

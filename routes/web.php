@@ -35,7 +35,7 @@ Route::get('/negocio/VerProductos/{idnegocio}',[NegocioConroller::class, 'traerP
 Route::get('/product/crearProducto/{idNegocio}',[ProductoController::class, 'CrearProducto'])->name('producto.CrearProducto');
 Route::post('/product/GuardarProducto/{idNegocio}',[ProductoController::class, 'GuardarProducto'])->name('producto.GradarProducto');
 Route::get('/product/ActualizarProducto/{idProducto}',[ProductoController::class, 'ActualizarProducto'])->name('producto.ActualizaProducto');
-Route::put('/product/GuadarCambiosProducto/',[ProductoController::class, 'GuardarCambiosProductos'])->name('producto.GradarCambios');
+Route::put('/product/GuadarCambiosProducto/{idnegocio}/{idproducto}',[ProductoController::class, 'GuardarCambiosProductos'])->name('producto.GuardarCambios');
 
 
 
