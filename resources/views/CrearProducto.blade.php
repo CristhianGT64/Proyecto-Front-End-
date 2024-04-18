@@ -10,6 +10,9 @@
     <title>Nuevo Producto</title>
 </head>
 <body>
+    <br>
+    <a href="{{route('negocio.menuPrincipal')}}" class="btn btn-primary">Volver</a>
+    <br>
     <h1>Nuevo Producto</h1>
     <div>
     <div class="border border-success p-2 mb-2 border-opacity-50  px-4">
@@ -55,7 +58,7 @@
               
 
             <div class="col-12">
-              <input type="submit" class="btn btn-primary" value="Guardar Producto">
+              <input type="submit" class="btn btn-success" value="Guardar Producto">
             </div>
           </form>
     </div>

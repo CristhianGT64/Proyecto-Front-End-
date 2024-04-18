@@ -8,9 +8,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Http;
 
 Route::get('/', function () {
-    // var_dump($_SESSION);
-
-    // session_abort();
+    session_abort();
     // exit;
     return view('Login');
 })->name("Login");
@@ -42,7 +40,9 @@ Route::get('/product/ActualizarProducto/{idProducto}',[ProductoController::class
 Route::put('/product/GuadarCambiosProducto/{idnegocio}/{idproducto}',[ProductoController::class, 'GuardarCambiosProductos'])->name('producto.GuardarCambios');
 Route::get('/product/ConsultaEliminarProducto/{idProducto}',[ProductoController::class, 'ConsultaEliminarProducto'])->name('producto.consEliminarProducto');
 Route::get('/product/EliminarProducto/{idProducto}',[ProductoController::class, 'EliminarProducto'])->name('producto.EliminarProducto');
-Route::get('/negocio/MenuPrincipal',[ProductoController::class, 'regresarMenuPrincipal'])->name('negocio.menuPrincipal');
+Route::get('/product/MenuPrincipal',[ProductoController::class, 'regresarMenuPrincipal'])->name('negocio.menuPrincipal');
+Route::get('/product/CerrarSesion',[ProductoController::class, 'cerrarSesion'])->name('negocio.cerrarSesionAdminENegocio');
+
 
 
 //Categoria =====================================================================
