@@ -52,7 +52,7 @@
                             <input type="file" name="imagen" id="imagen" accept="image/jpeg, image/png, image/jpg">
                         </div>
                         <div>
-                            <img width="150" src="/imagenesProductos/{{$producto['imagen']}}" alt="Imagen de producto {{$producto['nombre']}}">
+                            <img width="150" src="/imagenesProductos/{{$producto['imagen']}}.jpg" alt="Imagen de producto {{$producto['nombre']}}">
                             <input type="hidden" value="{{$producto['imagen']}}" name="imagenAct">
                         </div>
                         <div>

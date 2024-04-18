@@ -42,7 +42,7 @@ class ProductoController extends Controller
                 "idnegocio"=>$idNegocio,
             ],
             "nombre"=>$request->nombre,
-            "descripción"=>$request->descripcion,
+            "descripcion"=>$request->descripcion,
             "precio"=>$request->precio,
             "cantidad"=>$request->categoria,
             "imagen"=>$nombreImagen
@@ -93,6 +93,7 @@ class ProductoController extends Controller
     public function GuardarCambiosProductos(Request $request, $idNegocio, $idProducto ){
         session_start();
 
+
             if(($image = ($_FILES['imagen']['tmp_name']) != "")){
 
                 //$_FILES ES UNA SUPER GLOBAL
@@ -108,7 +109,9 @@ class ProductoController extends Controller
             //Validamos que si la carpeta no existe la cree
             if (!is_dir($carpetaImagenesProductos)){
                 mkdir($carpetaImagenesProductos);  //Creamos el directorio de imagenes
+                
             }
+
             }else{
                 $nombreImagen = $request->imagenAct;
             }
@@ -122,7 +125,7 @@ class ProductoController extends Controller
                     "idnegocio"=>$idNegocio,
                 ],
                 "nombre"=>$request->nombre,
-                "descripción"=>$request->descripcion,
+                "descripcion"=>$request->descripcion,
                 "precio"=>$request->precio,
                 "cantidad"=>$request->cantidad,
                 "imagen"=>$nombreImagen
