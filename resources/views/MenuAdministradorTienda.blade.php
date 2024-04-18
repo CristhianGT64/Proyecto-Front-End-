@@ -51,7 +51,7 @@
                 <img  src="/imagenesProductos/{{$producto['imagen']}}" height="250" class="card-img-top" alt="Producto">
                 <div class="card-body">
                   <h5 class="card-title fw-bold" >{{$producto['nombre']}}</h5>
-                  <p class="card-text">{{$producto['descripción']}}</p>
+                  <p class="card-text">{{$producto['descripcion']}}</p>
                   <p class="card-text">Precio: L. {{$producto['precio']}}</p>
                   <p class="card-text">Cantidad: {{$producto['cantidad']}}</p>
                   <a href="{{route('producto.ActualizaProducto', $producto['idproducto'])}}" class="btn btn-primary">Actualizar</a>

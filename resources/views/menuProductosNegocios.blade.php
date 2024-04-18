@@ -45,7 +45,7 @@
           <img src="/imagenesProductos/{{$producto['imagen']}}" class="card-img-top" alt="Producto 1" height="200">
           <div class="card-body">
             <h5 class="card-title">{{$producto['nombre']}}</h5>
-            <p class="card-text">{{$producto['descripción']}}</p>
+            <p class="card-text">{{$producto['descripcion']}}</p>
             <p class="card-text">Precio: {{$producto['precio']}}</p>
             <a href="#" class="btn btn-primary">Ordenar</a>
           </div>

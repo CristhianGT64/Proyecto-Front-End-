@@ -9,10 +9,7 @@
 <body>
     <h1>ActualizaR Prodcuto</h1>
 
-    {{-- @php
-        var_dump($producto['idproducto']);
-        exit;
-    @endphp --}}
+
 
     <div>
         <form action="{{route('producto.GuardarCambios', ['idnegocio'=> $producto['negocio']['idnegocio'] , 'idproducto'=> $producto['idproducto']])}}" method="POST" enctype="multipart/form-data"> {{-- Fomrulario de creacion de usuario --}}
@@ -28,7 +25,7 @@
                         </div>
                         <div>
                             <label for="descripcion">Descripcion</label>
-                            <input type="text" value="{{$producto['descripción']}}"  name="descripcion">
+                            <input type="text" value="{{$producto['descripcion']}}"  name="descripcion">
                         </div>
                         <div>
                             <label for="precio">Precio</label>
@@ -52,7 +49,7 @@
                             <input type="file" name="imagen" id="imagen" accept="image/jpeg, image/png, image/jpg">
                         </div>
                         <div>
-                            <img width="150" src="/imagenesProductos/{{$producto['imagen']}}.jpg" alt="Imagen de producto {{$producto['nombre']}}">
+                            <img width="150" src="/imagenesProductos/{{$producto['imagen']}}" alt="Imagen de producto {{$producto['nombre']}}">
                             <input type="hidden" value="{{$producto['imagen']}}" name="imagenAct">
                         </div>
                         <div>
