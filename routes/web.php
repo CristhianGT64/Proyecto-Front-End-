@@ -34,6 +34,7 @@ Route::get('/negocio/agregarNegocio',[NegocioConroller::class, 'agregarNegocio']
 Route::post('/negocio/guardarNegocio', [NegocioConroller::class, 'guardarNegocio'])->name('negocio.guardarNegocio');
 Route::get('/negocio/VerMapa', [NegocioConroller::class, 'verMapa'])->name('negocio.mapa');
 Route::get('/negocio/VerProductos/{idnegocio}',[NegocioConroller::class, 'traerProductosXnegocio'])->name('negocio.negocioProductos');
+Route::get('/negocio/MostrarNegocios',[NegocioConroller::class, 'mostrarNegocios'])->name('negocio.mostrarNegocios');
 
 //Producto ======================================================================
 Route::get('/product/crearProducto/{idNegocio}',[ProductoController::class, 'CrearProducto'])->name('producto.CrearProducto');

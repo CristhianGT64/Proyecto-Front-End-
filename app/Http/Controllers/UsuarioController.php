@@ -42,11 +42,9 @@ class UsuarioController extends Controller
             return view('MenuRepartido', compact('UsusarioActivo'));
         }
         elseif($UsusarioActivo['roles']["idrol"] === 3){
-            $negocios1 = Http::get('http://localhost:8081/api/negocio/TodosNegocios');
-            $negocios = $negocios1->json();
             //var_dump($negocios);
             //exit;
-            return view('MenuUsuario', compact('negocios'));
+            return redirect('/negocio/MostrarNegocios');
         }
         elseif($UsusarioActivo['roles']["idrol"] === 4){
             return $this->NegocioAdministrador($UsusarioActivo);

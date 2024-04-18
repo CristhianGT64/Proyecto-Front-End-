@@ -35,7 +35,7 @@ class NegocioConroller extends Controller
 
         $guardarNegocio = Http::post('http://localhost:8081/api/negocio/crear',[
             'nombre'=>$request->nombreNegocio,
-            'teléfono'=>$request->telefonoNegocio,
+            'telefono'=>$request->telefonoNegocio,
             'hora_apertura'=>$request->horaApertura,
             'hora_cierre'=>$request->horaCierre,
             'latitud'=>$request->latitud,
@@ -75,6 +75,13 @@ class NegocioConroller extends Controller
 
         $productos  = $productosNegocio->json();
         return view('menuProductosNegocios', compact('productos'));
+    }
+
+    public function mostrarNegocios(){
+        $negocios1 = Http::get('http://localhost:8081/api/negocio/TodosNegocios');
+        $negocios = $negocios1->json();
+
+        return view('MenuUsuario', compact('negocios'));
     }
     
 }
