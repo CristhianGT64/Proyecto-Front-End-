@@ -131,9 +131,11 @@ class ProductoController extends Controller
                 "imagen"=>$nombreImagen
             ]);
 
-            if($image != ""){
+
+
+            if($image){
                 //Subir las imagenes al sistemas
-                move_uploaded_file($image , $carpetaImagenesProductos.'/'.$nombreImagen);
+                move_uploaded_file($_FILES['imagen']['tmp_name'], $carpetaImagenesProductos.'/'.$nombreImagen);
                 // Guardar Producto en base de datos
             }
             
