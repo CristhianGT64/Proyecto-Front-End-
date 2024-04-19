@@ -1,0 +1,8 @@
+.fondo {
+    background-image: url(/public/imagenBG/mensajero-femenino-vista-frontal-que-sostiene-pequeno-paquete-comida-rosa.jpg);
+    height: 50vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}  
+
