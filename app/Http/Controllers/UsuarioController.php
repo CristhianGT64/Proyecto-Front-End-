@@ -44,6 +44,8 @@ class UsuarioController extends Controller
         elseif($UsusarioActivo['roles']["idrol"] === 3){
             //var_dump($negocios);
             //exit;
+            session_start(); 
+            $_SESSION["idUsuario"] = $UsusarioActivo['idusuario'];
             return redirect('/negocio/MostrarNegocios');
         }
         elseif($UsusarioActivo['roles']["idrol"] === 4){

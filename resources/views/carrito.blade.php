@@ -1,104 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pedido</title>
 </head>
 <body>
 
-<style>
-    body {
-        font-family: Arial, sans-serif;
-    }
-    .table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 20px;
-    }
-    .table th,
-    .table td {
-        border: 1px solid #ddd;
-        padding: 8px;
-        text-align: left;
-    }
-    .table th {
-        background-color: #f2f2f2;
-    }
-    .table th:first-child,
-    .table td:first-child {
-        text-align: center;
-    }
-    .table td {
-        vertical-align: middle;
-    }
-    .btn-eliminar {
-        background-color: #dc3545;
-        color: white;
-        border: none;
-        padding: 5px 10px;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-    .btn-eliminar:hover {
-        background-color: #c82333;
-    }
-</style>
+    <div>
+        <h1>Carrito de compras</h1><br><br>
 
+        <div>
+            <button type="button" class="btn btn-success mx-4">Finalizar Compra</button>
+            <button type="button" class="btn btn-danger mx-4">Vaciar Carrito</button>
+        </div><br>
+        <div class="table-responsive">
 
-
-
-
-
-
-
-
-<h1>Pedido</h1>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Producto</th>
-      <th scope="col">Cantidad</th>
-      <th scope="col">Precio</th>
-      <th scope="col">Total</th>
-
-      <th scope="col">Gestionar</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>nombreProducto</td>
-      <td>1</td>
-      <td>$100</td>
-      <td>$100</td>
-      <td><button type="button" class="btn btn-danger">Eliminar</button></td>
-      
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>nombreProducto</td>
-      <td>2</td>
-      <td>$100</td>
-      <td>$200</td>
-      <td><button type="button" class="btn btn-danger">Eliminar</button></td>
-    </tr>
-
-  </tbody>
-  </table>
-
-
-
-  <button type="button" class="btn btn-danger">Cancelar Pedido</button>
-  <button type="button" class="btn btn-primary">Ir a Pagar</button>
-
-
-
-
+            <table class="table  table-hover table align-middle" >
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">idUsuario</th>
+                        <th scope="col">idNegocio</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
     
+                <tbody>
+    
+                    @foreach($Productos as $Producto)
+                        <tr>
+                            <td><img width="80px" height="80px" src="/imagenesProductos/{{$Producto['imagen']}}" alt="Hamburguesa"></td>
+                            <td>{{$Producto['nombre']}}</td>
+                            <td>{{$Producto['idUsuario']}}</td>
+                            <td>{{$Producto['idNegocio']}}</td>
+                            <td><button type="button" class="btn btn-outline-danger">Eliminar</button></td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    <div>
 </body>
 </html>
 

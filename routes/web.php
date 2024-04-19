@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\NegocioConroller;
+use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
@@ -51,3 +52,8 @@ Route::get('/categoria/crearCategoria', [CategoriaController::class, 'agregarCat
 Route::Post('/categoria/guardarCategoria', [CategoriaController::class, 'guardarCategoria'])->name('categoria.guardarCategoria');
 
 
+
+//Pedido =============================================================================
+
+Route::get('/pedidido/agregarProductoApedido/{idProducto}', [PedidoController::class, 'agregarProductoApedido'])->name('pedido.agregarProductoCarrito');
+Route::get('/pedido/verDetalles', [PedidoController::class, 'verPedido'])->name('pedido.verPedido');

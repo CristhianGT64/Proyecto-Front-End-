@@ -47,7 +47,7 @@
             <h5 class="card-title">{{$producto['nombre']}}</h5>
             <p class="card-text">{{$producto['descripcion']}}</p>
             <p class="card-text">Precio: {{$producto['precio']}}</p>
-            <a href="#" class="btn btn-primary">Ordenar</a>
+            <a href="{{route('pedido.agregarProductoCarrito', $producto['idproducto'])}}" class="btn btn-primary">Ordenar</a>
           </div>
         </div>
       </div>

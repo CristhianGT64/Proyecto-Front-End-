@@ -68,6 +68,7 @@ class NegocioConroller extends Controller
     }
 
     public function traerProductosXnegocio($idnegocio){
+        session_start();
 
         $productosNegocio = Http::get('http://localhost:8081/api/Producto/ProductoxNegocio',[
             "idNegocio" => $idnegocio,
@@ -78,10 +79,12 @@ class NegocioConroller extends Controller
     }
 
     public function mostrarNegocios(){
+        session_start();
+
         $negocios1 = Http::get('http://localhost:8081/api/negocio/TodosNegocios');
         $negocios = $negocios1->json();
 
         return view('MenuUsuario', compact('negocios'));
     }
-    
+
 }
