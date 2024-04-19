@@ -16,7 +16,7 @@
     <h1>Nuevo Producto</h1>
     <div>
     <div class="border border-success p-2 mb-2 border-opacity-50  px-4">
-        <form class="row g-3 border-5 px-4 " action="{{route('producto.GradarProducto', $idNegocio)}}" method="POST" enctype="multipart/form-data">
+        <form class="row g-3 border-5 px-4" action="{{route('producto.GradarProducto', $idNegocio)}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="col-md-6">
                 <label for="nombre" class="form-label">Nombre</label>

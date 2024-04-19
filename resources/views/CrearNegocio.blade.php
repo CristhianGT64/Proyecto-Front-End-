@@ -6,89 +6,103 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <link rel="stylesheet" type="text/css" href="/css/Mapa.css" />
-    {{-- <script type="module" src="/js/mapa.js"></script> --}}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Enlace al archivo de estilos CSS personalizado -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
     <title>Agregar Negocio</title>
 </head>
 <body>
-
+    <br>
     <h1>Agregar Negocio</h1>
-    <div>
-        <form action="{{route('negocio.guardarNegocio')}}" method="POST" enctype="multipart/form-data"> {{-- Fomrulario de creacion de negocio --}}
+    <br>
+    <a href="" class="btn btn-primary">Volver</a>
+    <br>
+    <div class="border p-2 mb-2 border-opacity-50  px-4">
+        <form class="row g-3 border-5 px-4" action="{{route('negocio.guardarNegocio')}}" method="POST" enctype="multipart/form-data"> {{-- Fomrulario de creacion de negocio --}}
             @csrf
-            <div>
-                <fieldset>
+                     <hr class="border border-primary border-3 opacity-75">
                     <legend>Informacion del negocio</legend>
-                    <label for="nombre">Nombre:</label><br>
-                    <input type="text" id="nombre" name="nombreNegocio" required><br><br>
-    
-                    <label for="telefono">Teléfono:</label><br>
-                    <input type="tel" id="telefono" name="telefonoNegocio" required pattern="[0-9]{4}-[0-9]{4}" placeholder="Formato: 1234-5678"><br><br>
-    
-                    <label for="hora_apertura">Hora de Apertura:</label><br>
-                    <input type="time" id="hora_apertura" name="horaApertura" required><br><br>
-    
-                    <label for="hora_cierre">Hora de Cierre:</label><br>
-                    <input type="time" id="hora_cierre" name="horaCierre" required><br><br>
+                   
 
-                    <label for="descripcion">Descripcion:</label><br>
-                    <textarea name="descripcion" id="descripcion" cols="40" rows="3"></textarea><br><br>
-
-                    <label for="imagen">Imagen</label>
-                    <input type="file" name="imagen" id="imagen" accept="image/jpeg, image/png, image/jpg">
-                </fieldset>
-                <br>
-
-                <h3>Datos del administrador</h3>
-                <fieldset>
-                    <legend>Datos Personal</legend>
-                    <div>
-                        <div>
-                            <label for="primerNombre">Primer Nombre</label>
-                            <input type="text" placeholder="Primer Nombre" name="primerNombre">
-                        </div>
-                        <div>
-                            <label for="segundoNombre">Segundo Nombre</label>
-                            <input type="text" placeholder="Segundo Nombre" name="segundoNombre">
-                        </div>
-                        <div>
-                            <label for="primerApellido">Primer Apellido</label>
-                            <input type="text" placeholder="Primer Apellido" name="primerApellido">
-                        </div>
-                        <div>
-                            <label for="segundoApellido">Segundo Apellido</label>
-                            <input type="text" placeholder="Segundo Apellido" name="segundoApellido">
-                        </div>
+                    <div  class="col-md-3">
+                        <label  class="form-label" for="nombre">Nombre:</label>
+                        <input class="form-control" type="text" id="nombre" name="nombreNegocio" required>
                     </div>
-                </fieldset>
+                    
+                    <div  class="col-md-3">
+                        <label  class="form-label" for="telefono">Teléfono:</label>
+                        <input class="form-control" type="tel" id="telefono" name="telefonoNegocio" required pattern="[0-9]{4}-[0-9]{4}" placeholder="Formato: 1234-5678">
+        
+                    </div>
+                    
+                    <div  class="col-md-3">
+                        <label  class="form-label" for="hora_apertura">Hora de Apertura:</label>
+                        <input class="form-control" type="time" id="hora_apertura" name="horaApertura" required>
+        
+                    </div>
+                    <div  class="col-md-3">
+                    <label  class="form-label" for="hora_cierre">Hora de Cierre:</label>
+                    <input class="form-control" type="time" id="hora_cierre" name="horaCierre" required>
+                    </div>
+
+                    <div class="mb-3">
+                    <label  class="form-label" for="descripcion">Descripcion:</label>
+                    <textarea class="form-control" name="descripcion" id="descripcion" cols="40" rows="3"></textarea>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label" for="imagen">Imagen</label>
+                        <input type="file" class="form-control name="imagen" id="imagen" accept="image/jpeg, image/png, image/jpg">
+                    </div>
                 <br>
 
-                <fieldset>
-                    <legend>Datos Generales</legend>
-                        <div>
-                            <div>
-                                <label for="email">E-mail</label>
-                                <input type="email" placeholder="E-mail" name="email">
-                            </div>
-                            <div>
-                                <label for="contrasena">Contraseña</label>
-                                <input type="password" placeholder="Contraseña" name="contrasena">
-                            </div>
-                            <div>
-                                <label for="contrasenaConfirmed">Confirmar Contraseña</label>
-                                <input type="password" placeholder="Confirmar Contraseña">
-                            </div>
-                            <div>
-                                <label for="telefono">Telefono</label>
-                                <input type="tel" placeholder="Telefono" name="telefonoUsuario" min="1" max="10">
-                            </div>
+                <hr class="border border-primary border-3 opacity-75">
+                <h3>Datos del administrador</h3>
+
+
+                    <legend>Datos Personal</legend>
+                        <div  class="col-md-3">
+                            <label class="form-label" for="primerNombre">Primer Nombre</label>
+                            <input  class="form-control type="text" placeholder="Primer Nombre" name="primerNombre">
                         </div>
-                </fieldset>
-            </div>
+                        <div  class="col-md-3">
+                            <label class="form-label" for="segundoNombre">Segundo Nombre</label>
+                            <input  class="form-control type="text" placeholder="Segundo Nombre" name="segundoNombre">
+                        </div>
+                        <div  class="col-md-3">
+                            <label class="form-label" for="primerApellido">Primer Apellido</label>
+                            <input  class="form-control type="text" placeholder="Primer Apellido" name="primerApellido">
+                        </div>
+                        <div  class="col-md-3">
+                            <label class="form-label" for="segundoApellido">Segundo Apellido</label>
+                            <input  class="form-control type="text" placeholder="Segundo Apellido" name="segundoApellido">
+                        </div>
+
+
+                    <legend>Datos Generales</legend>
+                            <div class="col-md-3">
+                                <label class="form-label" for="email">E-mail</label>
+                                <input type="email" pl class="form-control" aceholder="E-mail" name="email">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label" for="contrasena">Contraseña</label>
+                                <input type="password" class="form-control"  placeholder="Contraseña" name="contrasena">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label" for="contrasenaConfirmed">Confirmar Contraseña</label>
+                                <input type="password" class="form-control"  placeholder="Confirmar Contraseña">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label" for="telefono">Telefono</label>
+                                <input type="tel" plac class="form-control" placeholder="Telefono" name="telefonoUsuario" min="1" max="10">
+                            </div>
         </div>
+        <hr class="border border-primary border-3 opacity-75">
 
                 {{-- Comienzo del mapa --}}
 
-                <h3>¿Cual es la direccion del negocio?</h3>
+                <center> <h3 class="centro">¿Cual es la direccion del negocio?</h3> </center>
                 <!--The div element for the map -->
                 <div id="map"></div>
             
@@ -107,12 +121,11 @@
                     <input type="hidden" name="latitud" id="latitud" > {{-- Hidden para que no sea visible en el formulario --}}
                     <input type="hidden" name="longitud" id="longitud" >
                 </div> {{-- Latitud y Longitud --}}
-                <div>
-                    <input type="submit" value="Agregar negocio"><br>
+                <div  class="d-grid gap-2 col-6 mx-auto">
+                    <input type="submit" class="btn btn-primary" value="Agregar negocio"><br>
                 </div>
-    </form> {{-- Fin del formulario --}}
+        </form> {{-- Fin del formulario --}}
     </div>
-
 
     {{-- <script src="/js/mapa.js"></script> --}}
     <script src="/js/PosicionActualUsuario.js"></script>
