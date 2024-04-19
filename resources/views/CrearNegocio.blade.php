@@ -53,7 +53,7 @@
                     
                     <div class="mb-3">
                         <label class="form-label" for="imagen">Imagen</label>
-                        <input type="file" class="form-control name="imagen" id="imagen" accept="image/jpeg, image/png, image/jpg">
+                        <input type="file" class="form-control" name="imagen" id="imagen" accept="image/jpeg, image/png, image/jpg">
                     </div>
                 <br>
 
