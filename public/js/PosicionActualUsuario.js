@@ -15,7 +15,7 @@ async function initMap() {
     center: { lat: 14.089889, lng:-87.213806  },
     zoom: 13,
     mapId: "DEMO_MAP_ID",
-    draggable:true,
+    draggable: true,
   });
   infoWindow = new google.maps.InfoWindow();
 

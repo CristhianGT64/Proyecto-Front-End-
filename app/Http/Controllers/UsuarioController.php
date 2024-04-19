@@ -16,7 +16,11 @@ class UsuarioController extends Controller
         //Pasar de json a arreglo
         $UsusarioActivo = $ususario->json();
         //Validamos si existe el usuario y no sea null
+
         if($UsusarioActivo){
+            session_start(); //Super Glbal Para inicio de sesion
+            $_SESSION["idUsuario"] = $UsusarioActivo['idusuario'];
+            $_SESSION['nombre'] = $UsusarioActivo['personas']['primernombre'].' '.$UsusarioActivo['personas']['primerapellido'];
             //Si no es null comprobamos que tipo de usuario es
             return $this->ValidarTipoUsuario($UsusarioActivo);
         }
@@ -55,6 +59,7 @@ class UsuarioController extends Controller
     }
     //locastorage
     public function NegocioAdministrador($UsusarioActivo){
+        session_abort();
         session_start(); //Super Glbal Para inicio de sesion
         $_SESSION["idUsuario"] = $UsusarioActivo['idusuario'];
         $negocio = Http::get('http://localhost:8081/api/negocio/TraerNegocio', [
@@ -92,6 +97,42 @@ class UsuarioController extends Controller
             return redirect('/');
         }
         return view('UsuarioNuevo');
+    }
+
+    public function VolverMenuAdministrador(){
+        session_start();
+        return view('MenuAdministrador');
+    }
+
+    public function CrearRepartidor(){
+        session_start();
+        return view('CrearRepartidor');
+    }
+
+    public function GuardarRepartidor(Request $request){
+
+        $GuardarRepartidor = Http::post('http://localhost:8081/api/Usuario/CrearRepartidor', [
+            "personas"=>[
+                "primernombre" => $request->primerNombre,
+                "segundonombre" => $request->segundoNombre,
+                "primerapellido"=> $request->primerApellido,
+                "segundoapellido" => $request->segundoApellido,
+            ],
+            "email"=>$request->email,
+            "contrasena"=>$request->contrasena,
+            "telefono"=>$request->telefonoUsuario,
+            "vehiculo"=>[
+                "marca"=>$request->marca,
+                "modelo"=>$request->modelo,
+                "placa"=>$request->placa,
+            ]
+        ]);
+
+        if($GuardarRepartidor->json()){
+            return $this->VolverMenuAdministrador();
+        }
+        return $this->CrearRepartidor();
+
     }
 
     
