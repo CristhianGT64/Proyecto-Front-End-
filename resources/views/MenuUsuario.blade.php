@@ -22,9 +22,11 @@
         </li>
 
       </ul>
+
+      <a class="btn btn-outline-secondary mx-3" href="{{route('Login')}}">Cerrar Cesion </a>
        <!-- Agregar el nombre de usuario -->
-       <span class="navbar-text">
-        Usuario: Juan
+      <span class="navbar-text">
+        Usuario: {{$_SESSION['nombre']}}
       </span>
     </div>
   </div>
@@ -49,7 +51,7 @@
           <div class="card-body">
             <h5 class="card-title">{{$negocio['nombre']}}</h5>
             <p class="card-text">{{$negocio['descripcion']}}</p>
-            <a href="{{route('negocio.negocioProductos', $negocio['idnegocio'])}}" class="btn btn-primary col-12" >Ordenar</a>
+            <a href="{{route('negocio.negocioProductos', $negocio['idnegocio'])}}" class="btn btn-primary col-12" >Ver Productos</a>
           </div>
         </div><br>
       </div>

@@ -45,7 +45,7 @@ class PedidoController extends Controller
 
         //Creando y searilizando el arreglo que se va a guardar en la cookie
         $ProductoCarrito=["nombre"=>$producto['nombre'], "idUsuario"=>$_SESSION['idUsuario'],"idProducto"=>$producto['idproducto'],
-                         "idNegocio"=>$producto['negocio']['idnegocio'],"imagen"=>$producto['imagen']
+                         "idNegocio"=>$producto['negocio']['idnegocio'],"Precio"=>$producto['precio'],"imagen"=>$producto['imagen']
 
         ];
         $Productoguardar = serialize($ProductoCarrito);
@@ -71,11 +71,14 @@ class PedidoController extends Controller
                 }
             }else {
                 setcookie($nameCookie,$Productoguardar,$expiracion,$ruta);
+                return redirect('/pedido/verDetalles');
             }
         }
 
         if (empty($productosXusuario)) {
             setcookie($nameCookie,$Productoguardar,$expiracion,$ruta);
+
+            return redirect('/pedido/verDetalles');
         }else {
             $buscarProducto = $this->validarProductoCarrito($productosXusuario, $producto);
             if (!$buscarProducto) {
@@ -105,4 +108,41 @@ class PedidoController extends Controller
         }
         return $valorEncontrado;
     }
+
+    public function vaciarCarrito(){
+        session_start();
+
+        foreach ($_COOKIE as $nombre => $valor) {
+
+            if ($nombre!="laravel_session" && $nombre!="XSRF-TOKEN" && $nombre !="PHPSESSID") {
+                $nuevo=unserialize($_COOKIE[$nombre]);
+
+                if ($nuevo['idUsuario'] == $_SESSION['idUsuario']) {
+                    setcookie($nombre, '', time() - 3600, '/');
+                }
+            }
+        }
+        return redirect('/pedido/verDetalles');
+    }
+
+
+
+    public function eliminarProductoCarrito($nombreProducto){
+        session_start();
+
+        foreach ($_COOKIE as $nombre => $valor) {
+            if ($nombre!="laravel_session" && $nombre!="XSRF-TOKEN" && $nombre !="PHPSESSID") {
+                $nuevo=unserialize($_COOKIE[$nombre]);
+
+                if (($nuevo['idUsuario'] == $_SESSION['idUsuario']) and ($nuevo['nombre'] == $nombreProducto)) {
+                    setcookie($nombre, '', time() - 3600, '/');
+                }
+            }
+        }
+
+        return redirect('/pedido/verDetalles');
+
+    }
+
+    
 }

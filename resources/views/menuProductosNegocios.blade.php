@@ -11,8 +11,8 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
-    <a class="navbar-brand" href="#">Nombre del Negocio</a>
-    <a class="nav-link" href="#">Pedidos </a>
+    <a class="navbar-brand" href="">{{$_SESSION['nombreNegocio']}}</a>
+    <a class="nav-link" href="{{route('pedido.verPedido')}}">Pedidos </a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -28,7 +28,7 @@
       </ul>
        <!-- Agregar el nombre de usuario -->
        <span class="navbar-text">
-        Usuario: Juan
+        Usuario: {{$_SESSION['nombre']}}
       </span>
     </div>
   </div>

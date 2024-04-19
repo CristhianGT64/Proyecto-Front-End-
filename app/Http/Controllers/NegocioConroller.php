@@ -74,6 +74,15 @@ class NegocioConroller extends Controller
             "idNegocio" => $idnegocio,
         ]);
 
+        $negocio = Http::get('http://localhost:8081/api/negocio/buscarPorId',[
+            "idNegocio" => $idnegocio,
+        ]);
+
+        $negocioAccedido = $negocio->json();
+
+        $_SESSION['nombreNegocio'] = $negocioAccedido['nombre'];
+        $_SESSION['idNegocio'] = $negocioAccedido['idnegocio'];
+
         $productos  = $productosNegocio->json();
         return view('menuProductosNegocios', compact('productos'));
     }

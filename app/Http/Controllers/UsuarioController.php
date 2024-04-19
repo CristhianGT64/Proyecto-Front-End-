@@ -48,8 +48,8 @@ class UsuarioController extends Controller
         elseif($UsusarioActivo['roles']["idrol"] === 3){
             //var_dump($negocios);
             //exit;
-            session_start(); 
-            $_SESSION["idUsuario"] = $UsusarioActivo['idusuario'];
+            //session_start(); 
+            //$_SESSION["idUsuario"] = $UsusarioActivo['idusuario'];
             return redirect('/negocio/MostrarNegocios');
         }
         elseif($UsusarioActivo['roles']["idrol"] === 4){
@@ -59,9 +59,8 @@ class UsuarioController extends Controller
     }
     //locastorage
     public function NegocioAdministrador($UsusarioActivo){
-        session_abort();
-        session_start(); //Super Glbal Para inicio de sesion
-        $_SESSION["idUsuario"] = $UsusarioActivo['idusuario'];
+        //session_start(); //Super Glbal Para inicio de sesion
+        //$_SESSION["idUsuario"] = $UsusarioActivo['idusuario'];
         $negocio = Http::get('http://localhost:8081/api/negocio/TraerNegocio', [
             "idUsuario" => $UsusarioActivo['idusuario']
         ]);
@@ -97,42 +96,6 @@ class UsuarioController extends Controller
             return redirect('/');
         }
         return view('UsuarioNuevo');
-    }
-
-    public function VolverMenuAdministrador(){
-        session_start();
-        return view('MenuAdministrador');
-    }
-
-    public function CrearRepartidor(){
-        session_start();
-        return view('CrearRepartidor');
-    }
-
-    public function GuardarRepartidor(Request $request){
-
-        $GuardarRepartidor = Http::post('http://localhost:8081/api/Usuario/CrearRepartidor', [
-            "personas"=>[
-                "primernombre" => $request->primerNombre,
-                "segundonombre" => $request->segundoNombre,
-                "primerapellido"=> $request->primerApellido,
-                "segundoapellido" => $request->segundoApellido,
-            ],
-            "email"=>$request->email,
-            "contrasena"=>$request->contrasena,
-            "telefono"=>$request->telefonoUsuario,
-            "vehiculo"=>[
-                "marca"=>$request->marca,
-                "modelo"=>$request->modelo,
-                "placa"=>$request->placa,
-            ]
-        ]);
-
-        if($GuardarRepartidor->json()){
-            return $this->VolverMenuAdministrador();
-        }
-        return $this->CrearRepartidor();
-
     }
 
     
