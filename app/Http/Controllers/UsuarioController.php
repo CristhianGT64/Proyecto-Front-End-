@@ -16,7 +16,11 @@ class UsuarioController extends Controller
         //Pasar de json a arreglo
         $UsusarioActivo = $ususario->json();
         //Validamos si existe el usuario y no sea null
+
         if($UsusarioActivo){
+            session_start(); //Super Glbal Para inicio de sesion
+            $_SESSION["idUsuario"] = $UsusarioActivo['idusuario'];
+            $_SESSION['nombre'] = $UsusarioActivo['personas']['primernombre'].' '.$UsusarioActivo['personas']['primerapellido'];
             //Si no es null comprobamos que tipo de usuario es
             return $this->ValidarTipoUsuario($UsusarioActivo);
         }
@@ -53,6 +57,7 @@ class UsuarioController extends Controller
     }
     //locastorage
     public function NegocioAdministrador($UsusarioActivo){
+        session_abort();
         session_start(); //Super Glbal Para inicio de sesion
         $_SESSION["idUsuario"] = $UsusarioActivo['idusuario'];
         $negocio = Http::get('http://localhost:8081/api/negocio/TraerNegocio', [
@@ -90,6 +95,11 @@ class UsuarioController extends Controller
             return redirect('/');
         }
         return view('UsuarioNuevo');
+    }
+
+    public function VolverMenuAdministrador(){
+        session_start();
+        return view('MenuAdministrador');
     }
 
     

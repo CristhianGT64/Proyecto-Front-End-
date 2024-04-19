@@ -16,7 +16,7 @@
     <br>
     <h1>Agregar Negocio</h1>
     <br>
-    <a href="" class="btn btn-primary">Volver</a>
+    <a href="{{route('usuario.MenuAdministrador')}}" class="btn btn-primary">Volver</a>
     <br>
     <div class="border p-2 mb-2 border-opacity-50  px-4">
         <form class="row g-3 border-5 px-4" action="{{route('negocio.guardarNegocio')}}" method="POST" enctype="multipart/form-data"> {{-- Fomrulario de creacion de negocio --}}

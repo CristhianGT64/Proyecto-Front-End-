@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Http;
 class NegocioConroller extends Controller
 {
     public function agregarNegocio(){
+        session_start();
         return view("CrearNegocio");
     }
 
