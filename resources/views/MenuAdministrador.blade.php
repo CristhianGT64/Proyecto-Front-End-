@@ -78,6 +78,21 @@
                 </div>
                 <br>
               </div>
+
+              <div class="col-md-4">
+                <div class="card">
+                  <img  src="/Imagenes/ImagenRepartidor.jpg" height="250" class="card-img-top" alt="Producto">
+                  <div class="card-body">
+                    <h5 class="card-title fw-bold" >Agregar Nuevo Repartidor</h5>
+                    <p class="card-text">Los Repartidores son el plus de nuestra app 
+                      agrega a mas para poder atender mas pedidos de varias personas a la vez.
+                      Es necesario ingresar el vehiculo asignado a cada uno
+                    </p>
+                        <a class="btn btn-primary" href="{{route('usuario.CrearRepartidor')}}">Agregar Repartidor</a>
+                  </div>
+                </div>
+                <br>
+              </div>
           </div>
         </div>
       </section>

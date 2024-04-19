@@ -23,6 +23,7 @@ class NegocioConroller extends Controller
     }
 
     public function guardarNegocio(Request $request){
+        session_start();
 
         $image = ($_FILES['imagen']['tmp_name']);
 
@@ -58,8 +59,6 @@ class NegocioConroller extends Controller
         ]);
 
         move_uploaded_file($image , $carpetaImagenesNegocios.'/'.$nombreImagen);
-
-        var_dump($guardarNegocio->json());
 
         if($guardarNegocio){
             return view('MenuAdministrador');

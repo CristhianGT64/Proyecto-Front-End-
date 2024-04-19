@@ -18,6 +18,8 @@ Route::post('/Login', [UsuarioController::class,'IniciarSesion'])->name('usuario
 Route::get('/Usuario/CrearUsuario', [UsuarioController::class,'CrearUsusarioNuevo'])->name('usuario.CrearUsusario');
 Route::post('/Usuario/GuardarUsuario', [UsuarioController::class,'GuardarUsuario'])->name('usuario.GuardarUsuario');
 Route::get('/Usuario/UsuarioAdministradorMenu', [UsuarioController::class,'VolverMenuAdministrador'])->name('usuario.MenuAdministrador');
+Route::get('/Usuario/CrearRepartidor', [UsuarioController::class,'CrearRepartidor'])->name('usuario.CrearRepartidor');
+Route::post('/Usuario/GuardarRepartidor', [UsuarioController::class,'GuardarRepartidor'])->name('usuario.GuardarRepartidor');
 
 
 //Pruebas de vistas
