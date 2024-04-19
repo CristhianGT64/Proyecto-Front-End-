@@ -54,7 +54,7 @@
                         <tr>
                             <td><img width="80px" height="80px" src="/imagenesProductos/{{$Producto['imagen']}}" alt="Hamburguesa"></td>
                             <td>{{$Producto['nombre']}}</td>
-                            <td>3</td>
+                            <td>{{$Producto['Cantidad']}}</td>
                             <td>{{$Producto['Precio']}}</td>
                             <td><a href="{{route('pedido.eliminarProducto', $Producto['nombre'])}}" type="button" class="btn btn-outline-danger">Eliminar</a></td>
                         </tr>

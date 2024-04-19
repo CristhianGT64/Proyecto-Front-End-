@@ -6,6 +6,47 @@
   <title>Menú de Productos</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="styles.css"> <!-- Enlace al archivo de estilos CSS personalizado -->
+  <style>
+    .input-group {
+        border: 2px solid #ccc;
+        display: flex;
+        align-items: center;
+        width: 100px;
+        border-radius: 3px;
+    }
+    
+    input[type="text"] {
+        border: transparent;
+        width: 25px;
+        padding: 8px;
+        border-radius: 4px;
+        margin-top: 5px;
+        align-items: center;
+        align-content:center;
+        text-align: center;
+    }
+    
+    .btn {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        padding: 5px 10px;
+        margin-left: 3px;
+        margin-right: 3px;
+        align-content: center;
+    }
+    
+    .btn:hover {
+        background-color: #0056b3;
+    }
+    .agregar-pedir{
+        display: flex;
+        flex-direction: row;
+        justify-content:space-between
+    }
+  </style>
 </head>
 <body>
 
@@ -47,7 +88,16 @@
             <h5 class="card-title">{{$producto['nombre']}}</h5>
             <p class="card-text">{{$producto['descripcion']}}</p>
             <p class="card-text">Precio: {{$producto['precio']}}</p>
-            <a href="{{route('pedido.agregarProductoCarrito', $producto['idproducto'])}}" class="btn btn-primary">Ordenar</a>
+            <form action="{{route('pedido.agregarProductoCarrito', $producto['idproducto']) }}">
+              <div class="agregar-pedir">
+                <div class="input-group">
+                    <button type="button" class="btn" onclick="decrement('cantidad{{$producto['nombre']}}') ">-</button>
+                    <input type="text" id="cantidad{{$producto['nombre']}}" name="cantidad" value="1" readonly>
+                    <button type="button" class="btn" onclick="increment('cantidad{{$producto['nombre']}}')">+</button>
+                </div>
+                <input type="submit" class="btn btn-primary" value="Pedir">
+            </div>
+            </form>
           </div>
         </div>
       </div>
@@ -56,6 +106,20 @@
     </div>
   </div>
 </section>
+
+<script>
+  function increment(inputId) {
+      var input = document.getElementById(inputId);
+      input.value = parseInt(input.value) + 1;
+  }
+  
+  function decrement(inputId) {
+      var input = document.getElementById(inputId);
+      if (parseInt(input.value) > 1) {
+          input.value = parseInt(input.value) - 1;
+      }
+  }
+</script>
 
 </body>
 </html>

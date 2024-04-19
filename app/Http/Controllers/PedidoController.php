@@ -31,7 +31,7 @@ class PedidoController extends Controller
 
 
 
-    public function agregarProductoApedido($idProducto){
+    public function agregarProductoApedido($idProducto, Request $request){
         session_start();
 
         $producto1 = Http::get('http://localhost:8081/api/producto/BuscarProducto',[
@@ -45,7 +45,8 @@ class PedidoController extends Controller
 
         //Creando y searilizando el arreglo que se va a guardar en la cookie
         $ProductoCarrito=["nombre"=>$producto['nombre'], "idUsuario"=>$_SESSION['idUsuario'],"idProducto"=>$producto['idproducto'],
-                         "idNegocio"=>$producto['negocio']['idnegocio'],"Precio"=>$producto['precio'],"imagen"=>$producto['imagen']
+                         "idNegocio"=>$producto['negocio']['idnegocio'],"Precio"=>$producto['precio'],"imagen"=>$producto['imagen'],
+                         "Cantidad"=>$request->cantidad
 
         ];
         $Productoguardar = serialize($ProductoCarrito);
