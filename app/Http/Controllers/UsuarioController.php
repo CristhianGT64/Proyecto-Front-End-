@@ -103,5 +103,36 @@ class UsuarioController extends Controller
         return view('UsuarioNuevo');
     }
 
+    public function VolverMenuAdministrador(){
+        session_start();
+        return view('MenuAdministrador');
+    }
+
+    public function GuardarRepartidor(Request $request){
+
+        $GuardarRepartidor = Http::post('http://localhost:8081/api/Usuario/CrearRepartidor', [
+            "personas"=>[
+                "primernombre" => $request->primerNombre,
+                "segundonombre" => $request->segundoNombre,
+                "primerapellido"=> $request->primerApellido,
+                "segundoapellido" => $request->segundoApellido,
+            ],
+            "email"=>$request->email,
+            "contrasena"=>$request->contrasena,
+            "telefono"=>$request->telefonoUsuario,
+            "vehiculo"=>[
+                "marca"=>$request->marca,
+                "modelo"=>$request->modelo,
+                "placa"=>$request->placa,
+            ]
+        ]);
+
+        if($GuardarRepartidor->json()){
+            return $this->VolverMenuAdministrador();
+        }
+        return $this->CrearRepartidor();
+
+    }
+
     
 }
