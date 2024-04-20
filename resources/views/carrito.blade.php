@@ -36,7 +36,7 @@
         <h1>Carrito de compras</h1><br><br>
 
         <div>
-            <a href="" type="button" class="btn btn-success mx-4">Procesar Pedido</a>
+            <a href="{{route('pedido.realizarPedido')}}" type="button" class="btn btn-success mx-4">Procesar Pedido</a>
             <a href="{{route('pedido.vaciarPedido')}}" type="button" class="btn btn-danger mx-4">Vaciar Carrito</a>
         </div><br>
         <div class="table-responsive">

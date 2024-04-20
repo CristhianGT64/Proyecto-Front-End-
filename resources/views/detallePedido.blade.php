@@ -20,7 +20,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
-    <a class="navbar-brand" href="#">Nombre del Negocio</a>
+    <a class="navbar-brand" href="#">{{$_SESSION['nombreNegocio']}}</a>
 
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,8 +33,8 @@
 
       </ul>
        <!-- Agregar el nombre de usuario -->
-       <span class="navbar-text">
-        Usuario: Juan
+      <span class="navbar-text">
+        Usuario: {{$_SESSION['nombre']}}
       </span>
     </div>
   </div>
@@ -52,7 +52,7 @@
           </div>
           <div class="mb-3">
             <label for="delivery">Delivery:</label>
-            <p>15-04-2024</p>
+            <p>{{$nombreRepartidor}}</p>
           </div>
           <div class="mb-3">
             <label for="envio">Envío:</label>
@@ -65,20 +65,20 @@
           <h2>Resumen</h2>
           <div class="mb-3">
             <label for="productos">Productos:</label>
-            <p>240</p>
+            <p>{{$cantidadTotalProductos}}</p>
           </div>
           <div class="mb-3">
             <label for="envio-resumen">Envío:</label>
-            <p>30</p>
+            <p>{{$envio}}</p>
           </div>
           <div class="mb-3">
             <label for="tarifa">Tarifa:</label>
-            <p>30</p>
+            <p>{{$tarifaCobrar}}</p>
           </div>
         
           <div class="mb-3">
             <label for="total">Total:</label>
-            <p>30</p>
+            <p>{{$totalPagar}}</p>
           </div>
           <button type="button" class="btn btn-success">Finalizar Compra</button>
         </div>

@@ -62,3 +62,4 @@ Route::get('/pedidido/agregarProductoApedido/{idProducto}', [PedidoController::c
 Route::get('/pedido/verDetalles', [PedidoController::class, 'verPedido'])->name('pedido.verPedido');
 Route::get('/pedido/vaciarPedido', [PedidoController::class, 'vaciarCarrito'])->name('pedido.vaciarPedido');
 Route::get('/pedido/eliminarProducto/{nombreProducto}', [PedidoController::class, 'eliminarProductoCarrito'])->name('pedido.eliminarProducto');
+Route::get('pedido/realizarPedido', [PedidoController::class, 'realizarPedido'])->name('pedido.realizarPedido');
