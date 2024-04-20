@@ -43,7 +43,16 @@ class UsuarioController extends Controller
             return view('MenuAdministrador', compact('UsusarioActivo'));
         }
         else if($UsusarioActivo['roles']["idrol"] === 2){
-            return view('MenuRepartido', compact('UsusarioActivo'));
+
+
+            //Consumo de la Api para traer iformacion si existe un pedido en ejecucion
+            $BuscarPedido = Http::get('http://localhost:8081/api/Pedido/TraerPedidosRepartidor', [
+                "idRepartidor" =>  $_SESSION["idUsuario"],
+            ]);
+
+            $pedidoNuevo = $BuscarPedido->json();
+
+            return view('MenuRepartido', compact('UsusarioActivo', 'pedidoNuevo'));
         }
         elseif($UsusarioActivo['roles']["idrol"] === 3){
             //var_dump($negocios);
