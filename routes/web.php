@@ -63,3 +63,5 @@ Route::get('/pedido/verDetalles', [PedidoController::class, 'verPedido'])->name(
 Route::get('/pedido/vaciarPedido', [PedidoController::class, 'vaciarCarrito'])->name('pedido.vaciarPedido');
 Route::get('/pedido/eliminarProducto/{nombreProducto}', [PedidoController::class, 'eliminarProductoCarrito'])->name('pedido.eliminarProducto');
 Route::get('pedido/realizarPedido', [PedidoController::class, 'realizarPedido'])->name('pedido.realizarPedido');
+Route::get('pedido/realizarPedido', [PedidoController::class, 'realizarPedido'])->name('pedido.realizarPedido');
+Route::get('pedido/EntregarPedido/{idPedido}', [PedidoController::class, 'EntregarPedido'])->name('pedido.EntregarPedido');

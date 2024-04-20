@@ -87,6 +87,7 @@ class UsuarioController extends Controller
         return view('CrearRepartidor');
     }
 
+
     public function CrearUsusarioNuevo(){
         return view('UsuarioNuevo');
     }

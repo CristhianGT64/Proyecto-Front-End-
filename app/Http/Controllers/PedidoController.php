@@ -145,6 +145,25 @@ class PedidoController extends Controller
 
     }
 
+    public function EntregarPedido($idPedido){
+        session_start();
+        //Entregar el producto
+        $Cambiar = Http::get('http://localhost:8081/api/Pedido/EntregarPedido', [
+            "idPedido"=>$idPedido,
+        ]);
+
+
+
+        //Consumo de la Api para traer iformacion si existe un pedido en ejecucion
+        $BuscarPedido = Http::get('http://localhost:8081/api/Pedido/TraerPedidosRepartidor', [
+            "idRepartidor" =>  $_SESSION["idUsuario"],
+        ]);
+
+        $pedidoNuevo = $BuscarPedido->json();
+
+        return view('MenuRepartido', compact('pedidoNuevo'));
+    }
+
 
     public function realizarPedido(){
         session_start();

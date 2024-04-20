@@ -44,7 +44,10 @@
 
       {{-- Detalles de envio --}}
       <br>
-      <center><h2>¡Tienes un nuevo encargo pendiente!</h2></center>
+    @if ($pedidoNuevo === null)
+        <center><h2>No hay encargos pendientes</h2></center>
+    @else
+    <center><h2>¡Tienes un nuevo encargo pendiente!</h2></center>
       <br>
       <div class="card text-center">
         <div class="card-header">
@@ -75,11 +78,11 @@
               </div>
             </div>
           </section>
-
-
-          <a href="#" class="btn btn-primary">Producto Entregado</a>
+          <a href="{{route('pedido.EntregarPedido', $pedidoNuevo['idPedido'])}}" class="btn btn-primary">Producto Entregado</a>
         </div>
         <div class="card-footer text-body-secondary">
+        
+    @endif
           
         </div>
       </div>
