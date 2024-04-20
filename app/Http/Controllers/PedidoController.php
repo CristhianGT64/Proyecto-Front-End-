@@ -149,6 +149,7 @@ class PedidoController extends Controller
     public function realizarPedido(){
         session_start();
 
+        //Obteniendo los productos del usuario 
         foreach ($_COOKIE as $name => $valor) {
 
             if ($name!="laravel_session" && $name!="XSRF-TOKEN" && $name !="PHPSESSID") {
@@ -161,6 +162,7 @@ class PedidoController extends Controller
             }
         }
 
+        //Validando que el usuario tenga productos en el pedido, de ser asi entonces se crea el pedido
         if (empty($productosXusuario)) {
             $urlRedireccion="/negocio/MostrarNegocios";
             echo "<script>alert('Pedido vacio, agreagar productos para realizar pedido'); window.location.href='$urlRedireccion';</script>";
@@ -168,6 +170,7 @@ class PedidoController extends Controller
             $cantidadTotalProductos=0;
             $totalXproducto=0;
             $totalTodosProductos=0;
+
             foreach ($productosXusuario as $producto) {
                 $cantidadTotalProductos = $cantidadTotalProductos + ($producto['Cantidad']);
                 $totalXproducto = ($producto['Cantidad']) * ($producto['Precio']);
@@ -181,13 +184,45 @@ class PedidoController extends Controller
 
             $envio = 15;
             $distancia= $distancia1->json();
-            //var_dump($distancia);
-            //exit;
             $nombreRepartidor = $distancia['nombre'];
             $tarifa = 5*$distancia['distanciaTotal'];
             $tarifaCobrar = number_format($tarifa,2);
             $totalPagar= $totalTodosProductos + $tarifaCobrar;
-            return view('detallePedido', compact('cantidadTotalProductos','envio', 'tarifaCobrar','nombreRepartidor', 'totalPagar'));
+    
+            //Creando el pedido en la base de datos
+            $pedido = Http::post ('http://localhost:8081/api/Pedido/CrearPedido',[
+                "total"=> $totalPagar,
+                "usuario"=>[
+                    "idusuario"=> $_SESSION['idUsuario'],
+                ],
+                "repartidor"=>[
+                    "idusuario"=> $distancia['idRepartidor'],
+                ],
+                "negocio"=>[
+                    "idnegocio"=> $_SESSION['idNegocio']
+                ]
+            ]);
+
+            $pedido1 = $pedido->json();
+            
+
+            //Creando el detalle de pedido
+            foreach ($productosXusuario as $productoUsuario) {
+                $detallePedido = Http::post('http://localhost:8081/api/detallePedido/crear',[
+                    "cantidad"=> $productoUsuario['Cantidad'],
+                    "preciounitario"=> $productoUsuario['Precio'],
+                    "pedido"=>[
+                        "idpedido"=> $pedido1,
+                    ],
+                    "producto"=> [
+                        "idproducto"=> $productoUsuario['idProducto'],
+                    ],
+                ]);
+            }
+
+            $fecha = date("Y-m-d");
+
+            return view('factura', compact('productosXusuario', 'totalPagar', 'nombreRepartidor', 'fecha'));
         }
 
 

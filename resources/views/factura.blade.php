@@ -31,16 +31,15 @@
             <div class="row">
               <div class="col-md-4">
                 <h5>Datos del Usuario:</h5>
-                <p>Nombre: John</p>
-                <p>Apellido: Doe</p>
+                <p>{{$_SESSION['nombre']}}</p>
               </div>
               <div class="col-md-4">
                 <h5>Datos del Repartidor:</h5>
-                <p>Nombre: Repartidor</p>
+                <p>Nombre: {{$nombreRepartidor}}</p>
               </div>
               <div class="col-md-4">
                 <h5>Fecha de emision:</h5>
-                <p>15-04-2024</p>
+                <p>{{$fecha}}</p>
               </div>
             </div>
             <table class="table">
@@ -54,19 +53,21 @@
                 </tr>
               </thead>
               <tbody>
+                @foreach ($productosXusuario as $producto)
                 <tr>
                   <td>1</td>
-                  <td>Producto 1</td>
-                  <td>2</td>
-                  <td>$10.00</td>
-                  <td>$20.00</td>
+                  <td>{{$producto['nombre']}}</td>
+                  <td>{{$producto['Cantidad']}}</td>
+                  <td>{{$producto['Precio']}}</td>
+                  <td>{{$producto['Cantidad']*$producto['Precio']}}</td>
                 </tr>
+                @endforeach
 
               </tbody>
             </table>
             <div class="row justify-content-end">
               <div class="col-md-4">
-                <p><strong>Total a Pagar:</strong> $40.00</p>
+                <p><strong>Total a Pagar:</strong>{{$totalPagar}}</p>
               </div>
             </div>
           </div>
