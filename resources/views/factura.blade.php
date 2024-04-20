@@ -73,8 +73,13 @@
           </div>
         </div>
       </div>
+    </div><br><br>
+
+    <div class="row justify-content-center">
+      <a href="{{route('negocio.negocioProductos', $_SESSION['idNegocio'])}}" type="button" class="btn btn-primary">Regresar</a>
     </div>
   </div>
+
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

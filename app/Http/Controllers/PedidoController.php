@@ -238,6 +238,17 @@ class PedidoController extends Controller
                 ]);
             }
 
+            foreach ($_COOKIE as $nombre => $valor) {
+
+                if ($nombre!="laravel_session" && $nombre!="XSRF-TOKEN" && $nombre !="PHPSESSID") {
+                    $nuevo=unserialize($_COOKIE[$nombre]);
+    
+                    if ($nuevo['idUsuario'] == $_SESSION['idUsuario']) {
+                        setcookie($nombre, '', time() - 3600, '/');
+                    }
+                }
+            }
+
             $fecha = date("Y-m-d");
 
             return view('factura', compact('productosXusuario', 'totalPagar', 'nombreRepartidor', 'fecha'));
