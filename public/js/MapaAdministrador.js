@@ -43,8 +43,28 @@ function RadianesGrados(radianes){
     async function actualizarUbicaciones() {
             locations.length = 0;
 
+            //Recorremos la lista donde guardamos los objetos de repartidores
+
             Repartidores.forEach(repartidor => {
-                // console.log(repartidor);
+                //Antes de modificar las posiciones validaremos si estan disponibles 
+                //los repartidores
+                
+                var estado;
+                fetch('http://localhost:8081/api/Usuario/EstadoRepartidor?idRepartidor='+repartidor.idRepartidor)
+                .then( response => response.json())
+                .then(data => {
+                    repartidor.disponible = data;
+                    // console.log(estado)
+                })
+
+                // console.log(repartidor.disponible)
+                if(repartidor.disponible === false){
+                    
+                }
+
+                //Cambiar de estado en objeto
+                // console.log(estado);
+                // console.log(estado.data);
                 repartidor.ModificarDireccion();
                 repartidor.ModificarAngulo();
                 var nvaPosicion = CalcularPosicion(14.0857108 , -87.1994419, repartidor._distanciaActualDelCentro, repartidor._rumbo);

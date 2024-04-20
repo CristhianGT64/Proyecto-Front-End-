@@ -153,7 +153,6 @@ class PedidoController extends Controller
         ]);
 
 
-
         //Consumo de la Api para traer iformacion si existe un pedido en ejecucion
         $BuscarPedido = Http::get('http://localhost:8081/api/Pedido/TraerPedidosRepartidor', [
             "idRepartidor" =>  $_SESSION["idUsuario"],

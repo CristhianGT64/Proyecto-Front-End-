@@ -23,19 +23,25 @@
     }
 
     ModificarDireccion(){
+       if(this._disponible != false){ //Validamos si nuestro repartidor esta disponible
         if(this._distanciaActualDelCentro >= 5){
             return this._distanciaActualDelCentro -= .8;
         }
         // Cambia el rango de los valores aleatorios para que sean más pequeños
         return this._distanciaActualDelCentro += (Math.random() * 0.2 - 0.1);
+       }
+       return this._distanciaActualDelCentro;
     }
 
     ModificarAngulo(){
-        if(this._rumbo >= 380){
-           return this.rumbo -= 2;
+        if(this._disponible != false){
+            if(this._rumbo >= 380){
+                return this.rumbo -= 2;
+             }
+             // Cambia el rango de los valores aleatorios para que sean más pequeños
+             return this._rumbo +=  (Math.random() * 1 - 0.5);
         }
-        // Cambia el rango de los valores aleatorios para que sean más pequeños
-        return this._rumbo +=  (Math.random() * 1 - 0.5);
+        return this._rumbo;
     }
 
     get idRepartidor() {
