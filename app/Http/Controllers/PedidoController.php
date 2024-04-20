@@ -145,5 +145,54 @@ class PedidoController extends Controller
 
     }
 
+
+    public function realizarPedido(){
+        session_start();
+
+        foreach ($_COOKIE as $name => $valor) {
+
+            if ($name!="laravel_session" && $name!="XSRF-TOKEN" && $name !="PHPSESSID") {
+                $nuevo=unserialize($_COOKIE[$name]);
+
+                if (($nuevo['idUsuario'] == $_SESSION['idUsuario'])) {
+
+                    $productosXusuario[] = $nuevo; 
+                }
+            }
+        }
+
+        if (empty($productosXusuario)) {
+            $urlRedireccion="/negocio/MostrarNegocios";
+            echo "<script>alert('Pedido vacio, agreagar productos para realizar pedido'); window.location.href='$urlRedireccion';</script>";
+        }else {
+            $cantidadTotalProductos=0;
+            $totalXproducto=0;
+            $totalTodosProductos=0;
+            foreach ($productosXusuario as $producto) {
+                $cantidadTotalProductos = $cantidadTotalProductos + ($producto['Cantidad']);
+                $totalXproducto = ($producto['Cantidad']) * ($producto['Precio']);
+                $totalTodosProductos = $totalTodosProductos + $totalXproducto;
+            }
+
+            $distancia1= Http::get ('http://localhost:8081/api/Pedido/DistanciaNegocioRepartidor',[
+                "idNegocio" => $_SESSION['idNegocio'],
+                "idUsuario" => $_SESSION['idUsuario'],
+            ]);
+
+            $envio = 15;
+            $distancia= $distancia1->json();
+            //var_dump($distancia);
+            //exit;
+            $nombreRepartidor = $distancia['nombre'];
+            $tarifa = 5*$distancia['distanciaTotal'];
+            $tarifaCobrar = number_format($tarifa,2);
+            $totalPagar= $totalTodosProductos + $tarifaCobrar;
+            return view('detallePedido', compact('cantidadTotalProductos','envio', 'tarifaCobrar','nombreRepartidor', 'totalPagar'));
+        }
+
+
+    }
+
+
     
 }
