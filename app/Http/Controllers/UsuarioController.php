@@ -73,6 +73,11 @@ class UsuarioController extends Controller
         return view('MenuAdministradorTienda', compact('negocioUsuario', 'productos'));
     }
 
+    public function CrearRepartidor(){
+        session_start();
+        return view('CrearRepartidor');
+    }
+
     public function CrearUsusarioNuevo(){
         return view('UsuarioNuevo');
     }
