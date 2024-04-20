@@ -6,11 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <link rel="stylesheet" type="text/css" href="/css/Mapa.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     {{-- <script type="module" src="/js/mapa.js"></script> --}}
+
     <title>Registro</title>
 </head>
 <body>
-    <h1>Registro</h1>
+<h1>Registro</h1>
     <div>
         <form action="{{route('usuario.GuardarUsuario')}}" method="POST"> {{-- Fomrulario de creacion de usuario --}}
             @csrf
@@ -84,7 +86,7 @@
                     <input type="hidden" name="longitud" id="longitud" >
                 </div> {{-- Latitud y Longitud --}}
                 <div>
-                    <input type="submit" value="Crear Usuario">
+                    <input type="submit" value="Crear Usuario" style="display: flex">
                 </div>
     </form> {{-- Fin del formulario --}}
     </div>
@@ -92,6 +94,7 @@
 
     {{-- <script src="/js/mapa.js"></script> --}}
     <script src="/js/PosicionActualUsuario.js"></script>
+
 
 
 </body>
