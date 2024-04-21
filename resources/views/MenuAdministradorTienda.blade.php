@@ -24,6 +24,9 @@
           <li class="nav-item active">
             <a class="nav-link" href="{{route('producto.CrearProducto', $negocioUsuario['idnegocio'])}}">Nuevo producto</a>
           </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{{route('Reporte.ListaTodosPedidosNegocio', $negocioUsuario['idnegocio'])}}">Ver Reportes</a>
+          </li>
   
         </ul>
          <!-- Agregar el nombre de usuario -->

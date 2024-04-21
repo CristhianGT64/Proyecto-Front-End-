@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\NegocioConroller;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\ReporteController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Http;
@@ -66,3 +67,11 @@ Route::get('/pedido/eliminarProducto/{nombreProducto}', [PedidoController::class
 Route::get('pedido/realizarPedido', [PedidoController::class, 'realizarPedido'])->name('pedido.realizarPedido');
 Route::get('pedido/realizarPedido', [PedidoController::class, 'realizarPedido'])->name('pedido.realizarPedido');
 Route::get('pedido/EntregarPedido/{idPedido}', [PedidoController::class, 'EntregarPedido'])->name('pedido.EntregarPedido');
+
+
+//Reportes ====================================================================
+
+Route::get('Reportes/TodosLosPedidos/', [ReporteController::class, 'VerListaReportes'])->name('Reporte.ListaTodosPedidos');
+Route::get('Reportes/GenerarReportePedido/{idPedido}', [ReporteController::class, 'GenerarReportePedido'])->name('Reporte.GenerarReportePedido');
+Route::get('Reportes/TodosLosPedidosNegocio/{idNegocio}', [ReporteController::class, 'VerListaReportesNegocio'])->name('Reporte.ListaTodosPedidosNegocio');
+Route::get('Reportes/GenerarReportePedidoNegocio/{idPedido}/{idNegocio}', [ReporteController::class, 'GenerarReportePedidoNegocio'])->name('Reporte.GenerarReportePedidoNegocio');

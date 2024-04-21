@@ -93,6 +93,21 @@
                 </div>
                 <br>
               </div>
+
+              <div class="col-md-4">
+                <div class="card">
+                  <img  src="/Imagenes/Reportes.jpeg" height="250" class="card-img-top" alt="Producto">
+                  <div class="card-body">
+                    <h5 class="card-title fw-bold" >Ver Todos los pedidos</h5>
+                    <p class="card-text">Obten una lista de todos los pedidos que se han realizado, observa el estado
+                      en el que esta cada uno, su progreso e infomracion adicional del negocio y los productos
+                      que se fueron a entregar
+                    </p>
+                        <a class="btn btn-primary" href="{{route('Reporte.ListaTodosPedidos')}}">Ver pedidos</a>
+                  </div>
+                </div>
+                <br>
+              </div>
           </div>
         </div>
       </section>
