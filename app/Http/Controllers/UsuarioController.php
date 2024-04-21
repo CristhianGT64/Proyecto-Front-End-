@@ -105,7 +105,19 @@ class UsuarioController extends Controller
         ]);
 
         if ($guardarUsuario){
-            return redirect('/');
+            session_start();
+
+            $ususario = Http::get('http://localhost:8081/api/Usuario/buscarPorEmail',[
+                "email"=>$request->email, //Parametros entre '' definidos en java el $request son las que manda la vista
+            ]);
+
+            $UsusarioActivo = $ususario->json();
+
+            $_SESSION["idUsuario"] = $UsusarioActivo['idusuario'];
+            $_SESSION['idRol'] = $UsusarioActivo['roles']["idrol"];
+            $_SESSION['nombre'] = $UsusarioActivo['personas']['primernombre'].' '.$UsusarioActivo['personas']['primerapellido'];
+
+            return redirect('/negocio/MostrarNegocios');
         }
         return view('UsuarioNuevo');
     }
