@@ -27,4 +27,19 @@ class CategoriaController extends Controller
             return view('AgregarCategoria');
         }
     }
+
+    public function ProductoxCategoria(Request $request){
+        session_start();
+        $CategoriaProducto = Http::get('http://localhost:8081/api/producto.ProductosXcategoria', [
+            "idCategoria"=>intval($request->categoria),
+        ]);
+
+        $productos = $CategoriaProducto->json();
+
+        $TraerCategorias = Http::get('http://localhost:8081/api/Categoria/TraerCategorias');
+        $categorias = $TraerCategorias->json();
+
+        return view('FiltroProductosCategoria', compact('productos' , 'categorias'));
+
+    }
 }

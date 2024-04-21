@@ -20,6 +20,7 @@ class UsuarioController extends Controller
         if($UsusarioActivo){
             session_start(); //Super Glbal Para inicio de sesion
             $_SESSION["idUsuario"] = $UsusarioActivo['idusuario'];
+            $_SESSION['idRol'] = $UsusarioActivo['roles']["idrol"];
             $_SESSION['nombre'] = $UsusarioActivo['personas']['primernombre'].' '.$UsusarioActivo['personas']['primerapellido'];
             //Si no es null comprobamos que tipo de usuario es
             return $this->ValidarTipoUsuario($UsusarioActivo);
@@ -39,11 +40,10 @@ class UsuarioController extends Controller
         // exit;
 
         //Con este dependiedo de que tipo de usuario sea lo enviara a su vista
-        if($UsusarioActivo['roles']["idrol"] === 1){
+        if( $_SESSION['idRol'] === 1){
             return view('MenuAdministrador', compact('UsusarioActivo'));
         }
-        else if($UsusarioActivo['roles']["idrol"] === 2){
-
+        else if( $_SESSION['idRol'] === 2){
 
             //Consumo de la Api para traer iformacion si existe un pedido en ejecucion
             $BuscarPedido = Http::get('http://localhost:8081/api/Pedido/TraerPedidosRepartidor', [
@@ -54,14 +54,11 @@ class UsuarioController extends Controller
 
             return view('MenuRepartido', compact('UsusarioActivo', 'pedidoNuevo'));
         }
-        elseif($UsusarioActivo['roles']["idrol"] === 3){
-            //var_dump($negocios);
-            //exit;
-            //session_start(); 
-            //$_SESSION["idUsuario"] = $UsusarioActivo['idusuario'];
+        elseif( $_SESSION['idRol'] === 3){//Menu del usuario convencional
+            
             return redirect('/negocio/MostrarNegocios');
         }
-        elseif($UsusarioActivo['roles']["idrol"] === 4){
+        elseif( $_SESSION['idRol'] === 4){
             return $this->NegocioAdministrador($UsusarioActivo);
         }
         return redirect('/');

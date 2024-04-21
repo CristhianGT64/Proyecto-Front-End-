@@ -52,7 +52,8 @@ Route::get('/product/CerrarSesion',[ProductoController::class, 'cerrarSesion'])-
 
 //Categoria =====================================================================
 Route::get('/categoria/crearCategoria', [CategoriaController::class, 'agregarCategoria'])->name('categoria.agregarCategoria');
-Route::Post('/categoria/guardarCategoria', [CategoriaController::class, 'guardarCategoria'])->name('categoria.guardarCategoria');
+Route::post('/categoria/guardarCategoria', [CategoriaController::class, 'guardarCategoria'])->name('categoria.guardarCategoria');
+Route::post('/categoria/ProductoCategoria', [CategoriaController::class, 'ProductoxCategoria'])->name('categoria.ProductoxCategoria');
 
 
 

@@ -90,10 +90,14 @@ class NegocioConroller extends Controller
     public function mostrarNegocios(){
         session_start();
 
+        //Traer los negocios existentes en nuetra base de datos
         $negocios1 = Http::get('http://localhost:8081/api/negocio/TodosNegocios');
         $negocios = $negocios1->json();
 
-        return view('MenuUsuario', compact('negocios'));
+        //Traer las categorias de nuestra base de datos
+        $TraerCategorias = Http::get('http://localhost:8081/api/Categoria/TraerCategorias');
+        $categorias = $TraerCategorias->json();
+        return view('MenuUsuario', compact('negocios', 'categorias'));
     }
 
 }

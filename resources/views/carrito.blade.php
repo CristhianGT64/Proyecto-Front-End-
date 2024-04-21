@@ -8,11 +8,6 @@
     <title>Pedido</title>
 </head>
 <body>
-    @php
-        
-      var_dump($_COOKIE);
-
-    @endphp
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
           <a class="navbar-brand" href="{{route('negocio.negocioProductos', $_SESSION['idNegocio'])}}">{{$_SESSION['nombreNegocio']}}</a>

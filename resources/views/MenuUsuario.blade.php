@@ -33,14 +33,23 @@
 </nav>
 
  <!-- Barra de búsqueda -->
- <form class="mt-4">
-      <div class="form-group">
-        <label for="busquedaNegocios">Buscar negocios:</label>
-        <input type="text" class="form-control" id="busquedaNegocios" placeholder="Que deseas pedir hoy?">
-      </div>
-      <button type="submit" class="btn btn-primary">Buscar</button>
-    </form>
-    
+
+<form action="{{route('categoria.ProductoxCategoria')}}" method="POST">
+  @csrf
+  <div class="input-group mt-4">
+    <select name="categoria" class="form-select form-control" id="inputGroupSelect04" aria-label="Example select with button addon">
+      <option disabled selected>Categoria</option>
+      @foreach ($categorias as $categoria)
+      <option value="{{$categoria['idcategoria']}}">{{$categoria['nombre']}}</option>
+      @endforeach
+    </select>
+    <button class="btn btn-outline-secondary" type="submit">Buscar Categoria</button>
+  </div>
+</form>
+
+
+
+
 <div class="container">
     <h1 class="text-center mt-5">Locales</h1>
     <div class="row mt-5">
