@@ -22,7 +22,7 @@
         </li>
 
       </ul>
-
+      
       <a class="btn btn-outline-secondary mx-3" href="{{route('Login')}}">Cerrar Cesion </a>
        <!-- Agregar el nombre de usuario -->
       <span class="navbar-text">

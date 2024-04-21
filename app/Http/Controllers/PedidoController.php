@@ -153,6 +153,25 @@ class PedidoController extends Controller
         ]);
 
 
+        if($Cambiar->json() === true){
+            //Traer Informacion del pedido que se proceso
+            //Buscamos el id del pedido
+            $BuscarPedido = Http::get('http://localhost:8081/api/Pedido/ReportePedidoEspecifico', [
+                "idPedido"=>$idPedido,
+                ]);
+
+            $pedido = $BuscarPedido->json(); //Ya tenemos el pedido fragmentado
+
+            //Guardar Factura
+            Http::post('http://localhost:8081/api/Factura/GuardarFactura',[
+                "idpedido"=>$pedido['idPedido'],
+                "nombreusuario"=>$pedido['nombreUsuario'],
+                "nombrerapartidor"=>$pedido['nombreRepartidor'],
+                "fechaemision"=>$pedido['fecha'],
+                "totalpagar"=>$pedido['total'],
+            ]);
+        }
+
         //Consumo de la Api para traer iformacion si existe un pedido en ejecucion
         $BuscarPedido = Http::get('http://localhost:8081/api/Pedido/TraerPedidosRepartidor', [
             "idRepartidor" =>  $_SESSION["idUsuario"],
