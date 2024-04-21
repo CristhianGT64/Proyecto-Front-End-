@@ -58,4 +58,20 @@ class ReporteController extends Controller
 
         return view('ReporteDetalladoNegocio', compact('pedido', 'idNegocio'));
     }
+
+    public function historialPedidosUsuario(){
+        session_start();
+
+        $RepostesUsuarios= Http::get('http://localhost:8081/api/Pedido/ReporteUsuario', [
+            "idUsuario"=> $_SESSION['idUsuario'],
+        ]);
+
+        $pedidos1 = $RepostesUsuarios->json();
+
+        $pedidos = array_reverse($pedidos1);
+
+        return view('HistorialPedidosUsuario', compact('pedidos',));
+    }
+
+
 }

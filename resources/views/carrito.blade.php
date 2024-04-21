@@ -28,7 +28,7 @@
       </nav>
 
     <div>
-        <h1>Carrito de compras</h1><br><br>
+        <h1 class="text-center mb-5">Carrito de compras</h1><br><br>
 
         <div>
             <a href="{{route('pedido.realizarPedido')}}" type="button" class="btn btn-success mx-4">Procesar Pedido</a>

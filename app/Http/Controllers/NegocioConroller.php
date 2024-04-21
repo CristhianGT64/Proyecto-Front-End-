@@ -13,6 +13,8 @@ class NegocioConroller extends Controller
     }
 
     public function verMapa(){
+        session_start();
+        
         $obtenerRepartidores = Http::get('http://localhost:8081/api/Usuario/TraerRepartidores');
         $repartidores = $obtenerRepartidores->json();
 

@@ -64,9 +64,9 @@ Route::get('/pedidido/agregarProductoApedido/{idProducto}', [PedidoController::c
 Route::get('/pedido/verDetalles', [PedidoController::class, 'verPedido'])->name('pedido.verPedido');
 Route::get('/pedido/vaciarPedido', [PedidoController::class, 'vaciarCarrito'])->name('pedido.vaciarPedido');
 Route::get('/pedido/eliminarProducto/{nombreProducto}', [PedidoController::class, 'eliminarProductoCarrito'])->name('pedido.eliminarProducto');
-Route::get('pedido/realizarPedido', [PedidoController::class, 'realizarPedido'])->name('pedido.realizarPedido');
-Route::get('pedido/realizarPedido', [PedidoController::class, 'realizarPedido'])->name('pedido.realizarPedido');
+Route::get('/pedido/realizarPedido', [PedidoController::class, 'realizarPedido'])->name('pedido.realizarPedido');
 Route::get('pedido/EntregarPedido/{idPedido}', [PedidoController::class, 'EntregarPedido'])->name('pedido.EntregarPedido');
+Route::get('/pedido/cancelarPedido/{idPedido}', [PedidoController::class, 'cancelarPedido'])->name('pedido.cancelarPedido');
 
 
 //Reportes ====================================================================
@@ -75,3 +75,4 @@ Route::get('Reportes/TodosLosPedidos/', [ReporteController::class, 'VerListaRepo
 Route::get('Reportes/GenerarReportePedido/{idPedido}', [ReporteController::class, 'GenerarReportePedido'])->name('Reporte.GenerarReportePedido');
 Route::get('Reportes/TodosLosPedidosNegocio/{idNegocio}', [ReporteController::class, 'VerListaReportesNegocio'])->name('Reporte.ListaTodosPedidosNegocio');
 Route::get('Reportes/GenerarReportePedidoNegocio/{idPedido}/{idNegocio}', [ReporteController::class, 'GenerarReportePedidoNegocio'])->name('Reporte.GenerarReportePedidoNegocio');
+Route::get('/Reporte/historialPedidosUsuario', [ReporteController::class, 'historialPedidosUsuario'])->name('reporte.reporteUsuario');

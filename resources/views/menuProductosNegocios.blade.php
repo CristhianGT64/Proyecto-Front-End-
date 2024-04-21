@@ -6,6 +6,7 @@
   <title>Menú de Productos</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="styles.css"> <!-- Enlace al archivo de estilos CSS personalizado -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <style>
     .input-group {
         border: 2px solid #ccc;
@@ -26,7 +27,7 @@
         text-align: center;
     }
     
-    .btn {
+    .btn1 {
         background-color: #007bff;
         color: #fff;
         border: none;
@@ -53,7 +54,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
     <a class="navbar-brand" href="">{{$_SESSION['nombreNegocio']}}</a>
-    <a class="nav-link" href="{{route('pedido.verPedido')}}">Pedidos </a>
+    <a class="nav-link" href="{{route('reporte.reporteUsuario')}}">Pedidos </a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -68,6 +69,9 @@
 
       </ul>
        <!-- Agregar el nombre de usuario -->
+       <span>
+        <a href="{{route('pedido.verPedido')}}" type="button" class="btn btn-secondary bi bi-cart3 mx-4"></a>
+       </span>
        <span class="navbar-text">
         Usuario: {{$_SESSION['nombre']}}
       </span>
@@ -91,11 +95,11 @@
             <form action="{{route('pedido.agregarProductoCarrito', $producto['idproducto']) }}">
               <div class="agregar-pedir">
                 <div class="input-group">
-                    <button type="button" class="btn" onclick="decrement('cantidad{{$producto['nombre']}}') ">-</button>
+                    <button type="button" class="btn1" onclick="decrement('cantidad{{$producto['nombre']}}') ">-</button>
                     <input type="text" id="cantidad{{$producto['nombre']}}" name="cantidad" value="1" readonly>
-                    <button type="button" class="btn" onclick="increment('cantidad{{$producto['nombre']}}')">+</button>
+                    <button type="button" class="btn1" onclick="increment('cantidad{{$producto['nombre']}}')">+</button>
                 </div>
-                <input type="submit" class="btn btn-primary" value="Pedir">
+                <input type="submit" class="btn1 btn-primary" value="Pedir">
             </div>
             </form>
           </div>

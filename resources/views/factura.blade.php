@@ -55,7 +55,7 @@
               <tbody>
                 @foreach ($productosXusuario as $producto)
                 <tr>
-                  <td>1</td>
+                  <td>{{$num = $num+1}}</td>
                   <td>{{$producto['nombre']}}</td>
                   <td>{{$producto['Cantidad']}}</td>
                   <td>{{$producto['Precio']}}</td>

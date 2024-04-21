@@ -250,13 +250,20 @@ class PedidoController extends Controller
             }
 
             $fecha = date("Y-m-d");
+            $num = 0;
 
-            return view('factura', compact('productosXusuario', 'totalPagar', 'nombreRepartidor', 'fecha'));
+            return view('factura', compact('productosXusuario', 'totalPagar', 'nombreRepartidor', 'fecha', 'num'));
         }
 
 
     }
 
+    public function cancelarPedido($idPedido){
 
+        Http::get ('http://localhost:8081/api/Pedido/CancelarPedido', [
+            "idPedido"=> $idPedido,
+        ]);
+        return redirect("/Reporte/historialPedidosUsuario");
+    }
     
 }
