@@ -45,7 +45,10 @@
     .agregar-pedir{
         display: flex;
         flex-direction: row;
-        justify-content:space-between
+        justify-content:space-between;
+        margin: 7px;
+        margin-left: 15px;
+        margin-right: 15px;
     }
   </style>
 </head>
@@ -86,23 +89,23 @@
 
       @foreach($productos as $producto) 
       <div class="col-md-4">
-        <div class="card">
+        <div class="card" style="height: 450px; max-height= 450px;">
           <img src="/imagenesProductos/{{$producto['imagen']}}" class="card-img-top" alt="Producto 1" height="200">
           <div class="card-body">
             <h5 class="card-title">{{$producto['nombre']}}</h5>
             <p class="card-text">{{$producto['descripcion']}}</p>
             <p class="card-text">Precio: {{$producto['precio']}}</p>
-            <form action="{{route('pedido.agregarProductoCarrito', $producto['idproducto']) }}">
-              <div class="agregar-pedir">
-                <div class="input-group">
-                    <button type="button" class="btn1" onclick="decrement('cantidad{{$producto['nombre']}}') ">-</button>
-                    <input type="text" id="cantidad{{$producto['nombre']}}" name="cantidad" value="1" readonly>
-                    <button type="button" class="btn1" onclick="increment('cantidad{{$producto['nombre']}}')">+</button>
-                </div>
-                <input type="submit" class="btn1 btn-primary" value="Pedir">
-            </div>
-            </form>
           </div>
+          <form action="{{route('pedido.agregarProductoCarrito', $producto['idproducto']) }}">
+            <div class="agregar-pedir">
+              <div class="input-group ">
+                  <button type="button" class="btn1" onclick="decrement('cantidad{{$producto['nombre']}}') ">-</button>
+                  <input type="text" id="cantidad{{$producto['nombre']}}" name="cantidad" value="1" readonly>
+                  <button type="button" class="btn1" onclick="increment('cantidad{{$producto['nombre']}}')">+</button>
+              </div>
+              <input type="submit" class="btn1 btn-primary" value="Pedir">
+          </div>
+          </form>
         </div>
       </div>
       @endforeach

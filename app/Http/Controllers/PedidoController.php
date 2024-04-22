@@ -221,9 +221,11 @@ class PedidoController extends Controller
 
             $envio = 15;
             $distancia= $distancia1->json();
+
             $nombreRepartidor = $distancia['nombre'];
-            $tarifa = 5*$distancia['distanciaTotal'];
+            $tarifa = 5*$distancia['distanciaTotal'] + $envio;
             $tarifaCobrar = number_format($tarifa,2);
+            $distanciaTotal = number_format($distancia['distanciaTotal'],3) ;
             $totalPagar= $totalTodosProductos + $tarifaCobrar;
     
             //Creando el pedido en la base de datos
@@ -271,7 +273,7 @@ class PedidoController extends Controller
             $fecha = date("Y-m-d");
             $num = 0;
 
-            return view('factura', compact('productosXusuario', 'totalPagar', 'nombreRepartidor', 'fecha', 'num'));
+            return view('factura', compact('productosXusuario', 'totalPagar', 'nombreRepartidor', 'fecha', 'num', "distanciaTotal"));
         }
 
 

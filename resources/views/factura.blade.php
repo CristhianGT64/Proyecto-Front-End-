@@ -67,6 +67,7 @@
             </table>
             <div class="row justify-content-end">
               <div class="col-md-4">
+                <p>Distancia:{{$distanciaTotal}}</p>
                 <p><strong>Total a Pagar:</strong>{{$totalPagar}}</p>
               </div>
             </div>

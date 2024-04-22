@@ -8,6 +8,16 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="styles.css"> <!-- Enlace al archivo de estilos CSS personalizado -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+      .agregar-pedir{
+        display: flex;
+        flex-direction: row;
+        justify-content:space-between;
+        margin: 7px;
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+    </style>
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -50,13 +60,15 @@
           <div class="row">
             @foreach ($productos as $producto)
             <div class="col-md-4">
-              <div class="card">
-                <img  src="/imagenesProductos/{{$producto['imagen']}}" height="250" class="card-img-top" alt="Producto">
+              <div class="card" style="height: 500px; max-height= 500px;">
+                <img  src="/imagenesProductos/{{$producto['imagen']}}" height="200" class="card-img-top" alt="Producto">
                 <div class="card-body">
                   <h5 class="card-title fw-bold" >{{$producto['nombre']}}</h5>
                   <p class="card-text">{{$producto['descripcion']}}</p>
                   <p class="card-text">Precio: L. {{$producto['precio']}}</p>
                   <p class="card-text">Cantidad: {{$producto['cantidad']}}</p>
+                </div>
+                <div class="agregar-pedir">
                   <a href="{{route('producto.ActualizaProducto', $producto['idproducto'])}}" class="btn btn-primary">Actualizar</a>
                   <a href="{{route('producto.consEliminarProducto', $producto['idproducto'])}}" class="btn btn-danger">Eliminar</a>
                 </div>

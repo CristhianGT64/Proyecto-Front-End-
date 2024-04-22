@@ -58,8 +58,12 @@
         <div class="card">
           <img src="/imagenesNegocios/{{$negocio['imagen']}}" class="card-img-top" alt="{{$negocio['nombre']}}"  height="200">
           <div class="card-body">
+            <?php
+              $horaApertura = substr($negocio['hora_apertura'],0,5);
+              $horaCierre = substr($negocio['hora_cierre'],0,5)
+            ?>
             <h5 class="card-title">{{$negocio['nombre']}}</h5>
-            <p class="card-text">{{$negocio['descripcion']}}</p>
+            <p class="card-text">{{$horaApertura}}-{{$horaCierre}}</p>
             <a href="{{route('negocio.negocioProductos', $negocio['idnegocio'])}}" class="btn btn-primary col-12" >Ver Productos</a>
           </div>
         </div><br>
